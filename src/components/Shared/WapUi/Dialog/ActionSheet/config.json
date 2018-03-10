@@ -1,0 +1,6 @@
+{
+  "entry": {
+    "action-sheet": "index.js"
+  },
+  "units": ["px", "rem"]
+}

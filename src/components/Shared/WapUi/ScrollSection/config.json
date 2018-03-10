@@ -1,0 +1,6 @@
+{
+  "entry": {
+    "scrollSection": "scrollSection.vue"
+  },
+  "units": ["px", "rem"]
+}

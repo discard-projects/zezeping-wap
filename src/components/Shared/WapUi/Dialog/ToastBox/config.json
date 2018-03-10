@@ -1,0 +1,6 @@
+{
+  "entry": {
+    "toast-box": "index.js"
+  },
+  "units": ["px", "rem"]
+}

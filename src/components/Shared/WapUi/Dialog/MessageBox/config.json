@@ -1,0 +1,6 @@
+{
+  "entry": {
+    "message-box": "index.js"
+  },
+  "units": ["px", "rem"]
+}

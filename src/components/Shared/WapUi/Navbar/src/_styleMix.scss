@@ -1,0 +1,45 @@
+@mixin wap-navbar {
+  .wap-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    line-height: pxRem(50);
+    height: pxRem(50);
+    z-index: 100;
+    border-bottom: 1px solid #d9d9d9;
+    background: #fff;
+
+    display: flex;
+
+    .navbar-center-box {
+      text-align: center;
+      font-size: pxRem(18);
+
+      .navbar-center {
+        max-height: 100%;
+      }
+    }
+    .navbar-item {
+      font-size: pxRem(16);
+      flex: 1;
+      padding: 0 pxRem(10);
+
+      &.navbar-left {
+        text-align: left;
+      }
+      &.navbar-right {
+        text-align: right;
+      }
+    }
+  }
+}
+
+
+@mixin wap-navbar-back-icon {
+  .wap-navbar-back-icon {
+    .icon-back {
+      font-size: pxRem(18);
+    }
+  }
+}

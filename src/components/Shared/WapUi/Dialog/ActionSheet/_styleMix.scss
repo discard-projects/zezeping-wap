@@ -1,0 +1,79 @@
+@mixin wap-action-sheet {
+  .wap-dialog {
+    @include dialog-mask;
+    flex-direction: column;
+    justify-content: flex-end;
+    &.wap-action-sheet {
+      @keyframes opacityOut {
+        to {
+          opacity: 0;
+        }
+      }
+      @keyframes fromDirectionBottomIn {
+        from {
+          transform:translate(0, 100%)
+        }
+        to {
+          transform:translate(0, 0)
+        }
+      }
+      @keyframes leaveDirectionBottom {
+        from {
+          transform:translate(0, 0)
+        }
+        to {
+          transform:translate(0, 100%)
+        }
+      }
+      .mask {
+        position: fixed;
+        left: 0; top: 0; right: 0; bottom: 0;
+        background: rgba(200, 200, 200, 0.2);
+      }
+      .action-sheet {
+        width: 100%;
+        background: #EFEFF4;
+        text-align: center;
+        animation: fromDirectionBottomIn .2s ease forwards;
+
+        .action-sheet-item {
+          font-size: pxRem(14);
+          line-height: pxRem(49);
+          background: #fff;
+          color: $color-dark;
+          @include tap;
+
+          border-bottom: pxRem(1) solid $color-for-border;
+
+          &.cancel {
+            &:before {
+              content: '';
+              display: block;
+              height: pxRem(3);
+              background: #f2f2f2;
+            }
+          }
+        }
+      }
+      color-primary {
+        color: $color-primary;
+      }
+      .color-danger {
+        color: $color-danger;
+      }
+      .color-disabled {
+        @include disabled;
+        pointer-events: none;
+      }
+
+      &.leave {
+        .mask {
+          animation: opacityOut .2s linear forwards;
+        }
+        .action-sheet {
+          animation: leaveDirectionBottom .2s linear forwards;
+        }
+      }
+    }
+  }
+}
