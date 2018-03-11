@@ -219,6 +219,9 @@ export default {
         this.init()
       })
     })
+  },
+  destroyed () {
+    this.destroy()
   }
 }
 </script>

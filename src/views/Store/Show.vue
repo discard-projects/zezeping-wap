@@ -2,7 +2,7 @@
   <div class="wap-navbar-exist">
     <wap-navbar>
       <template slot="left">
-        <wap-navbar-back-icon @click.native="$router.back()">
+        <wap-navbar-back-icon @click.native="$router.go(-1)">
           <span style="font-size: 17px">返回</span>
         </wap-navbar-back-icon>
       </template>

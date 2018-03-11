@@ -21,7 +21,7 @@ export default {
     },
     autoplay: {
       type: Number,
-      default: 3000
+      default: 4000
     },
     direction: {
       type: String,
@@ -100,9 +100,7 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
-      setTimeout(() => {
-        this.init()
-      })
+      this.init()
     })
   }
 }
