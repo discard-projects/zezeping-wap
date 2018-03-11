@@ -8,7 +8,7 @@
       </template>
       <template slot="right">
         <span class="wap-pointer" @click="$refs['newCommentRef'].showPop = true">评论</span>
-        <NewComment :store="store" ref="newCommentRef"></NewComment>
+        <NewComment :store="store" ref="newCommentRef" @fetchData="getStoreInfo"></NewComment>
       </template>
       详情
     </wap-navbar>

@@ -4,10 +4,10 @@
       <img :src="item.file.thumb.url" class="thumb" alt="">
     </li>
     <li>
-      <div class="select-img-box">
-        <input type="file" @change="selectedFile($event.target.files)" ref="file" style="display: none">
-        <i class="el-icon-plus" style="font-size: 25px"></i>
-      </div>
+      <label for="input" class="select-img-box">
+        <input id="input" class="file-input" type="file" @change="selectedFile($event.target.files)">
+        <i class="iconfont icon-add"></i>
+      </label>
     </li>
   </ul>
 </template>
@@ -52,6 +52,7 @@ export default {
 
 <style lang="scss" scoped>
   .select-img-box {
+    position: relative;
     display: inline-flex;
     width: 80px;
     height: 80px;
@@ -60,13 +61,22 @@ export default {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    .file-input {
+      width: 100%;
+      height: 100%;
+      visibility: hidden;
+      position: absolute;
+      z-index: 1;
+    }
   }
   ul {
-    padding: 10px;
+    padding: 10px 0px;
     li {
       display: inline-block;
       max-height: 80px;
       overflow: hidden;
+      margin: 2px;
       .thumb {
         width: 80px;
         height: 80px;

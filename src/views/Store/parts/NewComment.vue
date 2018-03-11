@@ -19,6 +19,11 @@
           <wap-switch v-model="form.anonymous"></wap-switch>
         </template>
       </wap-list-item>
+      <wap-list-item>
+        <template slot="left">
+          <multiple-uploader v-model="form.attachment_image_ids" :attachment-images.sync="form.attachment_images"></multiple-uploader>
+        </template>
+      </wap-list-item>
       <div style="margin: 15px;">
         <wap-button type="primary" size="large" style="display: block" @click="handlerCreate">提交</wap-button>
       </div>
@@ -31,6 +36,7 @@
 
 <script>
 import newMix from '@/components/Shared/Mixin/new'
+import MultipleUploader from '@/components/Shared/Uploader/MultipleUploader.vue'
 export default {
   mixins: [newMix],
   props: {
@@ -52,8 +58,13 @@ export default {
   },
   methods: {
     handlerCreate () {
-      this._handlerCreate(this.api.postStoreComment(this.store.id, this.form))
+      this._handlerCreate(this.api.postStoreComment(this.store.id, this.form)).then(res => {
+        this.showPop = false
+      })
     }
+  },
+  components: {
+    MultipleUploader
   }
 }
 </script>

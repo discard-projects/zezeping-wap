@@ -7,10 +7,14 @@ export default {
   },
   methods: {
     _handlerCreate (promise) {
-      promise.then(res => {
-        this.$emit('fetchData')
-        this.dialogShow = false
-      }).catch(() => {
+      return new Promise((resolve, reject) => {
+        promise.then(res => {
+          this.$emit('fetchData')
+          this.dialogShow = false
+          resolve()
+        }).catch((err) => {
+          reject(err)
+        })
       })
     }
   }
