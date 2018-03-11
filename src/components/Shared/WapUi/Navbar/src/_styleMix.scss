@@ -38,6 +38,7 @@
 
 @mixin wap-navbar-back-icon {
   .wap-navbar-back-icon {
+    color: #666;
     .icon-back {
       font-size: pxRem(18);
     }

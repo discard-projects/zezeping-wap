@@ -30,9 +30,3 @@ export default {
   @import "styleMix";
   @include wap-navbar;
 </style>
-
-<style lang="scss">
-  .wap-navbar-exist {
-    padding-top: pxRem(50);
-  }
-</style>

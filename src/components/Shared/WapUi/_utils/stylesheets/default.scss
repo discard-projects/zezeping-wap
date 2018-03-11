@@ -1,0 +1,9 @@
+.wap-pointer {
+  cursor: pointer;
+  &:active {
+    opacity: 0.7;
+  }
+}
+.wap-navbar-exist {
+  padding-top: pxRem(50);
+}

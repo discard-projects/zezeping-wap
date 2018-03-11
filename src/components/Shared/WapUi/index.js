@@ -34,6 +34,17 @@ export default {
     Vue.component('WapSearch', (resolve) => {
       resolve(require('./Search/src/search.vue'))
     })
+    // List ListItem
+    Vue.component('WapList', (resolve) => {
+      resolve(require('./List/src/list.vue'))
+    })
+    Vue.component('WapListItem', (resolve) => {
+      resolve(require('./List/src/listItem.vue'))
+    })
+    // Rank
+    Vue.component('WapRank', (resolve) => {
+      resolve(require('./Rank/src/rank.vue'))
+    })
     // dialog
     Vue.use(WapToastBox)
     Vue.prototype.wapUi.WapToastBox = WapToastBox

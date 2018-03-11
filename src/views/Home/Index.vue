@@ -1,8 +1,6 @@
 <template>
   <div class="wap-navbar-exist">
-    <wap-navbar>
-      <img src="../../assets/logo.png" alt="" style="max-height: 30px; display: inline-block" :style="{marginTop: '10px'}">
-    </wap-navbar>
+    <wap-navbar>首页</wap-navbar>
     <wap-slider :autoplay="3000" loop style="height: 200px">
       <div><img src="http://www.3987.com/uploadfile/2016/0418/20160418031310369.jpg"></div>
       <div><img src="http://www.ylmfu.com/zhuti/UploadPic/2017-2/201722819541986395.jpg"></div>
@@ -19,13 +17,18 @@
     </div>
     <div style="margin-top: 15px">
       <wap-search v-model="searchValue" full-page placeholder="搜索 with full page">
-        I'm slot， 哈哈
+        I'm slot， 哈哈 {{searchValue}}
       </wap-search>
     </div>
+    <div v-if="home">
+      <category-stores :name="category.name" v-for="category in home.categories" :key="category.id"></category-stores>
+    </div>
+
   </div>
 </template>
 
 <script>
+import CategoryStores from './parts/CategoryStores.vue'
 import index from '@/components/Shared/Mixin/index'
 import query from '@/components/Shared/Mixin/query'
 export default {
@@ -45,6 +48,9 @@ export default {
   },
   mounted () {
     this.getHome()
+  },
+  components: {
+    CategoryStores
   }
 }
 </script>

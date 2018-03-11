@@ -1,2 +1,19 @@
 @import url("mobile-reset.css");
-@import url("//at.alicdn.com/t/font_586689_twro8z1fans46lxr.css");
+@import url("//at.alicdn.com/t/font_586689_sc6fnef6sigm0a4i.css");
+@import "../../components/Shared/WapUi/_utils/stylesheets/default";
+/* 浮动开始 */
+.fl, .pull-left{
+  float: left;
+}
+.fr, .pull-right{
+  float: right;
+}
+.clearfix::before, .clearfix::after {
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+.clearfix:after {clear: both;}
+.clearfix {clear: both;zoom: 1;}
+/* 浮动结束 */
