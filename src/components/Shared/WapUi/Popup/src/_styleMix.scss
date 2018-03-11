@@ -1,0 +1,78 @@
+@import "../../_common/style/mixins/var";
+@mixin vmui-page-popup {
+  .vmui-page-popup {
+    position: fixed;
+    background: #fff;
+    top: 0;
+    bottom: 0;
+    backface-visibility: hidden;
+    transition: all .2s ease-out;
+
+    .vmui-page-popup-mask {
+      position: fixed;
+      left: 0; top: 0; right: 0; bottom: 0;
+      opacity: 0.1;
+
+      &.mask {
+        background: rgba(180, 180, 180, 0.2);
+        opacity: 1;
+      }
+    }
+
+    &.left {
+      left: 0;
+      right: auto;
+      &.page {
+        right: 0;
+      }
+      &.page-popup-enter, &.page-popup-leave-active {
+        transform: translate3d(-100%, 0, 0);
+        opacity: 0;
+      }
+    }
+
+    &.right {
+      left: auto;
+      right: 0;
+      &.page {
+        left: 0;
+      }
+      &.page-popup-enter, &.page-popup-leave-active {
+        transform: translate3d(100%, 0, 0);
+        opacity: 0;
+      }
+    }
+
+    &.top, &.bottom {
+      left: 0;
+      right: 0;
+    }
+    &.top {
+      top: 0;
+      bottom: auto;
+      &.page {
+        bottom: 0;
+      }
+      &.page-popup-enter, &.page-popup-leave-active {
+        transform: translate3d(0, -100%, 0);
+        opacity: 0;
+      }
+    }
+
+    &.bottom {
+      top: auto;
+      bottom: 0;
+      &.page {
+        top: 0;
+      }
+      &.page-popup-enter, &.page-popup-leave-active {
+        transform: translate3d(0, 100%, 0);
+        opacity: 0;
+      }
+    }
+
+    .slot-wrap {
+      position: relative;
+    }
+  }
+}
