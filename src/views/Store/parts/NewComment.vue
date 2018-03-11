@@ -47,7 +47,12 @@ export default {
   data () {
     return {
       showPop: false,
-      form: {
+      form: null
+    }
+  },
+  watch: {
+    showPop (newVal) {
+      this.form = {
         rank: 0,
         content: '',
         anonymous: false,
@@ -58,6 +63,11 @@ export default {
   },
   methods: {
     handlerCreate () {
+      if (!this.form.rank) {
+        return this.wapUi.WapToastBox.new({message: '给点评分吧', timeout: 2000})
+      } else if (!this.form.content) {
+        return this.wapUi.WapToastBox.new({message: '请输入评论内容', timeout: 2000})
+      }
       this._handlerCreate(this.api.postStoreComment(this.store.id, this.form)).then(res => {
         this.showPop = false
       })
