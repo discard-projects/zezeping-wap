@@ -45,6 +45,13 @@ export default {
     Vue.component('WapRank', (resolve) => {
       resolve(require('./Rank/src/rank.vue'))
     })
+    // Tabbar TabbarItem
+    Vue.component('WapTabbar', (resolve) => {
+      resolve(require('./Tabbar/src/Tabbar.vue'))
+    })
+    Vue.component('WapTabbarItem', (resolve) => {
+      resolve(require('./Tabbar/src/TabbarItem.vue'))
+    })
     // dialog
     Vue.use(WapToastBox)
     Vue.prototype.wapUi.WapToastBox = WapToastBox

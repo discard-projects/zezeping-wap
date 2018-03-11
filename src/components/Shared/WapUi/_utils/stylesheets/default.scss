@@ -7,3 +7,13 @@
 .wap-navbar-exist {
   padding-top: pxRem(50);
 }
+
+.wap-tabbar-exist {
+  padding-bottom: pxRem(50);
+
+  .wap-tabbar-item {
+    &.active {
+      color: #ff0066;
+    }
+  }
+}

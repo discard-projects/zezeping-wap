@@ -1,0 +1,28 @@
+@mixin wap-tabbar {
+  .wap-tabbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: pxRem(50);
+    height: pxRem(50);
+    z-index: 100;
+    border-top: 1px solid #d9d9d9;
+    background: #fff;
+    display: flex;
+  }
+}
+
+
+@mixin wap-tabbar-item {
+  .wap-tabbar-item {
+    flex: 1;
+    color: #666;
+    text-align: center;
+    @include tap;
+
+    &:not(:last-child) {
+      border-right: 1px solid #f2f2f2;
+    }
+  }
+}

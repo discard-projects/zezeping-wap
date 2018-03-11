@@ -1,5 +1,5 @@
 <template>
-  <div class="wap-navbar-exist">
+  <div class="wap-navbar-exist wap-tabbar-exist">
     <wap-navbar>首页</wap-navbar>
     <wap-slider :autoplay="3000" loop style="height: 140px" v-if="home && home.banners.length">
       <div v-for="banner in home.banners" :key="banner.id"><img :src="banner.image.url"></div>
@@ -16,6 +16,10 @@
       <category-stores :name="category.name" v-for="category in home.categories" :key="category.id"></category-stores>
     </div>
 
+    <wap-tabbar>
+      <wap-tabbar-item class="active" @click.native="$router.push({name: 'Home'})">首页</wap-tabbar-item>
+      <wap-tabbar-item @click.native="$router.push({name: 'Personal'})">个人中心</wap-tabbar-item>
+    </wap-tabbar>
   </div>
 </template>
 

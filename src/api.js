@@ -24,31 +24,31 @@ cusAxios.interceptors.request.use(function (config) {
 cusAxios.interceptors.response.use(function (response) {
   // Do something with response data
   if (response.data.msg) {
-    Vue.prototype.$message({ showClose: true, message: response.data.msg, type: 'success' })
+    Vue.prototype.wapUi.WapToastBox.new({message: response.data.msg, icon: 'icon-success', timeout: 2000})
   } else if (response.status === 204) {
-    Vue.prototype.$message({ showClose: true, message: 'success', type: 'success' })
+    Vue.prototype.wapUi.WapToastBox.new({message: 'success', icon: 'icon-success', timeout: 2000})
   }
   return response
 }, function (error) {
   // Do something with response error
   if (error.response) {
     if (error.response.status === 403) {
-      Vue.prototype.$message({ showClose: true, message: 'token overdue!', type: 'error' })
+      Vue.prototype.wapUi.WapToastBox.new({message: 'token overdue!', icon: 'icon-error', timeout: 2000})
       store.dispatch('logout')
     } else if (error.response.status === 401) {
-      Vue.prototype.$message({ showClose: true, message: error.response.data.msg || error.response.data.errors, type: 'error' })
+      Vue.prototype.wapUi.WapToastBox.new({ message: error.response.data.msg || error.response.data.errors, type: 'error', icon: 'icon-error', timeout: 2000 })
       store.dispatch('logout')
     } else if (error.response.status === 429) {
-      Vue.prototype.$message({ showClose: true, message: error.response.data, type: 'error' })
+      Vue.prototype.wapUi.WapToastBox.new({ message: error.response.data, icon: 'icon-error', timeout: 2000 })
     } else if (error.response.status === 500) {
-      Vue.prototype.$message({ showClose: true, message: 'data error!', type: 'error' })
+      Vue.prototype.wapUi.WapToastBox.new({ message: 'data error!', icon: 'icon-error', timeout: 2000 })
     } else if (error.response.status === 404) {
-      Vue.prototype.$message({ showClose: true, message: '404 Not Found!', type: 'error' })
+      Vue.prototype.wapUi.WapToastBox.new({ message: '404 Not Found!', icon: 'icon-error', timeout: 2000 })
     } else if (error.response.data && error.response.data.msg) {
-      Vue.prototype.$message({ showClose: true, message: error.response.data.msg, type: 'error' })
+      Vue.prototype.wapUi.WapToastBox.new({ message: error.response.data.msg, icon: 'icon-error', timeout: 2000 })
     }
   } else {
-    Vue.prototype.$message({ showClose: true, message: 'network error', type: 'error' })
+    Vue.prototype.wapUi.WapToastBox.new({ message: 'network error', icon: 'icon-error', timeout: 2000 })
   }
   return Promise.reject(error)
 })

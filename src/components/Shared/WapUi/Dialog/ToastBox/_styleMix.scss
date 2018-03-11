@@ -18,8 +18,12 @@
       .icon {
         display: inline-block;
         font-size: pxRem(24);
-        animation: animation-rotate 1.2s linear infinite;
         margin-top: -2px;
+        margin-right: 5px;
+
+        &[class*="loading"] {
+          animation: animation-rotate 1.2s linear infinite;
+        }
       }
 
       .text {

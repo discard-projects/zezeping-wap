@@ -49,6 +49,14 @@ ToastBox.install = function (Vue, options) {
     if (options.identify) {
       instancesObj[options.identify] = opr
     }
+
+    if (options.timeout) {
+      const timer = setTimeout(() => {
+        clearTimeout(timer)
+        opr.close()
+      }, options.timeout + 100)
+    }
+
     return opr
   }
 
