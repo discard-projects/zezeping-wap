@@ -11,7 +11,7 @@
     <!--<div>-->
       <!--<wap-search v-model="searchValue" placeholder="搜索"></wap-search>-->
     <!--</div>-->
-    <store-search></store-search>
+    <store-search v-model="searchValue"></store-search>
     <div v-if="home">
       <category-stores :name="category.name" v-for="category in home.categories" :key="category.id"></category-stores>
     </div>
@@ -28,7 +28,8 @@ export default {
   mixins: [index, query],
   data () {
     return {
-      home: null
+      home: null,
+      searchValue: ''
     }
   },
   methods: {

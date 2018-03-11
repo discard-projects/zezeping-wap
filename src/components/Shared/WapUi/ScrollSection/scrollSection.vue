@@ -185,6 +185,7 @@ export default {
       this.topInfo.scrollTop = 0
     },
     onScroll (event) {
+      console.log(event)
       let el = event.target
       if (!this.topInfo.isPullRefreshFetching && this.infiniteScroll && !this.bottomInfo.isScrollBottomFetching && !this.bottomInfo.isScrollBottomFetchingFinished && el.scrollHeight - el.clientHeight - el.scrollTop <= this.infiniteScrollDistance) {
         this.bottomInfo.isScrollBottomFetching = true

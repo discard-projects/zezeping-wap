@@ -16,7 +16,9 @@
         </form>
         <span class="cancel-text" @click="close">{{cancelText}}</span>
       </div>
-      <slot></slot>
+      <div class="content-box">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -72,9 +74,6 @@ export default {
   },
   mounted () {
     if (this.fullPage) {
-      window.addEventListener('popstate', () => {
-        this.showFullPage && history.go(1)
-      })
       window.addEventListener('hashchange', (e) => {
         e.preventDefault()
         this.showFullPage && this.close()

@@ -1,40 +1,75 @@
 <template>
   <div>
-    <wap-search v-model="searchValue" full-page placeholder="输入要搜索的店铺名称">
-      <wap-list title="搜索结果">
-        <wap-list-item class="wap-pointer" v-for="store in stores" :key="store.id" @click.native.stop="$router.push({name: 'storeDetail', params: {id: store.id}})">
-          <template slot="left">
-            <store-item :store="store"></store-item>
-          </template>
-          <template slot="right"><i class="iconfont icon-front"></i></template>
-        </wap-list-item>
-      </wap-list>
+    <wap-search v-model="currentValue" full-page placeholder="输入要搜索的店铺名称">
+      <div is="wap-scroll-section" :infinite-scroll="infiniteScroll" style="height: 100%">
+        <wap-list :title="`搜索结果(${paginateMeta.total_count})`">
+          <wap-list-item class="wap-pointer" v-for="store in tableData.data" :key="store.id" @click.native.stop="$router.push({name: 'storeDetail', params: {id: store.id}})">
+            <template slot="left">
+              <store-item :store="store"></store-item>
+            </template>
+            <template slot="right"><i class="iconfont icon-front"></i></template>
+          </wap-list-item>
+        </wap-list>
+      </div>
     </wap-search>
   </div>
 </template>
 
 <script>
 import StoreItem from '@/components/Store/Item'
+import index from '@/components/Shared/Mixin/index'
+import query from '@/components/Shared/Mixin/query'
 export default {
-  data () {
-    return {
-      searchValue: '',
-      stores: []
+  mixins: [index, query],
+  props: {
+    value: {
+      require: true
     }
   },
-  watch: {
-    searchValue: {
-      handler (nv) {
-        this.searchStores(nv)
+  data () {
+    return {
+      stores: [],
+      q: {
+        page: 1,
+        per_page: 10
+      }
+    }
+  },
+  computed: {
+    currentValue: {
+      get () {
+        return this.value
       },
-      immediate: true
+      set (nv) {
+        this.$emit('input', nv)
+        this.q.page = 1
+        this.fetchData(nv)
+      }
     }
   },
   methods: {
-    searchStores (query) {
-      this.api.getStores({q_name_cont: query}).then(res => {
-        this.stores = res.data.items
-      })
+    beforeFetch () {},
+    fetchData () {
+      return this._fetchData(this.api.getStores(Object.assign({}, this.q, {q_name_cont: this.currentValue})))
+    },
+    afterFetch (data) {
+      this.paginateMeta = data.pagination
+      this.data = data
+      this.tableData.data = this.tableData.data.concat(data.items)
+    },
+    infiniteScroll (finished) {
+      if (this.q.page !== this.paginateMeta.total_pages) {
+        this.q.page += 1
+        this.fetchData().then(res => {
+          if (this.q.page === this.paginateMeta.total_pages) {
+            finished(true)
+          } else {
+            finished()
+          }
+        }).catch(() => {
+          finished()
+        })
+      }
     }
   },
   components: {

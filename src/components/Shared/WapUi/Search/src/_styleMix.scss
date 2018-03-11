@@ -48,7 +48,13 @@
       bottom: 0;
       z-index: 101;
       background: #fff;
-      overflow: auto;
+      display: flex;
+      flex-direction: column;
+
+      .content-box {
+        flex: 1;
+        overflow: auto;
+      }
     }
   }
 }
