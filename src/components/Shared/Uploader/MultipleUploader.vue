@@ -4,7 +4,7 @@
       <img :src="item.file.thumb.url" class="thumb" alt="">
     </li>
     <li>
-      <div class="select-img-box" @click="$refs['file'].click()">
+      <div class="select-img-box">
         <input type="file" @change="selectedFile($event.target.files)" ref="file" style="display: none">
         <i class="el-icon-plus" style="font-size: 25px"></i>
       </div>

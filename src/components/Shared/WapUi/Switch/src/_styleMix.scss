@@ -1,6 +1,5 @@
-@import "../../_common/style/mixins/var";
-@mixin vmui-switch {
-  .vmui-switch {
+@mixin wap-switch {
+  .wap-switch {
     position: relative;
     display: inline-block;
     width: pxRem(52);

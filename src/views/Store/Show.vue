@@ -6,6 +6,10 @@
           <span style="font-size: 17px">返回</span>
         </wap-navbar-back-icon>
       </template>
+      <template slot="right">
+        <span class="wap-pointer" @click="$refs['newCommentRef'].showPop = true">评论</span>
+        <NewComment :store="store" ref="newCommentRef"></NewComment>
+      </template>
       详情
     </wap-navbar>
     <div style="padding: 10px 20px; background: #fff">
@@ -19,10 +23,12 @@
 <script>
 import StoreItem from '@/components/Store/Item'
 import Comments from './parts/Comments.vue'
+import NewComment from './parts/NewComment.vue'
 export default {
   data () {
     return {
-      store: null
+      store: null,
+      newCommentForm: null
     }
   },
   methods: {
@@ -37,7 +43,8 @@ export default {
   },
   components: {
     StoreItem,
-    Comments
+    Comments,
+    NewComment
   }
 }
 </script>

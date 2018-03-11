@@ -1,5 +1,5 @@
 <template>
-  <div class="vmui-switch" :class="{'is-long': isLong, 'is-longer': isLonger}" :style="coreStyle">
+  <div class="wap-switch" :class="{'is-long': isLong, 'is-longer': isLonger}" :style="coreStyle">
     <label class="switch-inner-wrap" :class="{checked: currentValue, disabled: disabled}">
       <input class="switch-input" :disabled="disabled" @change="$emit('change', currentValue)" type="checkbox" v-model="currentValue">
       <span class="switch-core">
@@ -11,74 +11,74 @@
 </template>
 
 <script>
-  export default {
-    name: 'vmSwitch',
-    props: {
-      value: Boolean,
-      disabled: {
-        type: Boolean,
-        default: false
+export default {
+  name: 'WapSwitch',
+  props: {
+    value: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    activeColor: {
+      type: String,
+      default: '#26a2ff'
+    },
+    activeText: {
+      type: String,
+      default: ''
+    },
+    inactiveColor: {
+      type: String,
+      default: ''
+    },
+    inactiveText: {
+      type: String,
+      default: ''
+    },
+    isLong: {
+      type: Boolean,
+      default: false
+    },
+    isLonger: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    currentValue: {
+      get () {
+        return this.value
       },
-      activeColor: {
-        type: String,
-        default: '#26a2ff'
-      },
-      activeText: {
-        type: String,
-        default: ''
-      },
-      inactiveColor: {
-        type: String,
-        default: ''
-      },
-      inactiveText: {
-        type: String,
-        default: ''
-      },
-      isLong: {
-        type: Boolean,
-        default: false
-      },
-      isLonger: {
-        type: Boolean,
-        default: false
+      set (val) {
+        this.$emit('input', val)
       }
     },
-    computed: {
-      currentValue: {
-        get () {
-          return this.value
-        },
-        set (val) {
-          this.$emit('input', val)
-        }
-      },
-      coreStyle () {
-        if (this.currentValue) {
-          return {backgroundColor: this.activeColor, borderColor: this.activeColor}
-        }
-        return {backgroundColor: this.inactiveColor, borderColor: this.inactiveColor}
+    coreStyle () {
+      if (this.currentValue) {
+        return {backgroundColor: this.activeColor, borderColor: this.activeColor}
       }
-    },
-    watch: {
-      inactiveColor: {
-        immediate: true,
-        handler () {
-          this.$nextTick(() => {
-            this.updateInactiveColor()
-          })
-        }
-      }
-    },
-    methods: {
-      updateInactiveColor () {
-        this.$refs.coreBeforeRef.style.backgroundColor = this.inactiveColor
+      return {backgroundColor: this.inactiveColor, borderColor: this.inactiveColor}
+    }
+  },
+  watch: {
+    inactiveColor: {
+      immediate: true,
+      handler () {
+        this.$nextTick(() => {
+          this.updateInactiveColor()
+        })
       }
     }
+  },
+  methods: {
+    updateInactiveColor () {
+      this.$refs.coreBeforeRef.style.backgroundColor = this.inactiveColor
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>
   @import "styleMix";
-  @include vmui-switch;
+  @include wap-switch;
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div class="wap-rank">
     <div class="bottom-star" ref="bottomRef">
-      <i v-for="i in maxScore" class="star-item iconfont" :class="{[icon]: true}" :key="i" :style="{fontSize: fontSize}"></i>
+      <i v-for="i in maxScore" class="star-item iconfont" @click.self="chooseScore(i)" :class="{[icon]: true}" :key="i" :style="{fontSize: fontSize}"></i>
     </div>
     <div class="top-star" ref="topRef" :style="{width: `${score / maxScore * 100}%`, color}">
-      <i v-for="i in maxScore" class="star-item iconfont" :class="{[icon]: true}" :key="i" :style="{fontSize: fontSize}"></i>
+      <i v-for="i in maxScore" class="star-item iconfont" @click.self="chooseScore(i)" :class="{[icon]: true}" :key="i" :style="{fontSize: fontSize}"></i>
     </div>
   </div>
 </template>
@@ -36,6 +36,11 @@ export default {
     maxScore: {
       type: Number,
       default: 5
+    }
+  },
+  methods: {
+    chooseScore (score) {
+      this.$emit('update:score', score)
     }
   }
 }

@@ -1,6 +1,10 @@
 <template>
   <div class="wap-list">
-    <div class="title" v-html="title"></div>
+    <div class="title">
+      <slot name="title">
+        <span v-html="title"></span>
+      </slot>
+    </div>
     <slot></slot>
   </div>
 </template>

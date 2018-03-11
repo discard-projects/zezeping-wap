@@ -52,6 +52,14 @@ export default {
     Vue.component('WapTabbarItem', (resolve) => {
       resolve(require('./Tabbar/src/TabbarItem.vue'))
     })
+    // Popup
+    Vue.component('WapPopup', (resolve) => {
+      resolve(require('./Popup/src/popup.vue'))
+    })
+    // Switch
+    Vue.component('WapSwitch', (resolve) => {
+      resolve(require('./Switch/src/switch.vue'))
+    })
     // dialog
     Vue.use(WapToastBox)
     Vue.prototype.wapUi.WapToastBox = WapToastBox
