@@ -42,8 +42,8 @@ export default {
       },
       set (nv) {
         this.$emit('input', nv)
-        this.q.page = 1
-        this.fetchData(nv)
+        this.reInit()
+        this.fetchData()
       }
     }
   },

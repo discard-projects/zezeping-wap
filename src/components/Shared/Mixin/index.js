@@ -23,6 +23,16 @@ export default {
     items () { return this.tableData.data }
   },
   methods: {
+    reInit () {
+      this.paginateMeta = {}
+      this.tableData = {
+        data: [],
+        dataIntros: [],
+        opIntro: null,
+        loading: false
+      }
+      this.data = null
+    },
     beforeFetch () {
       this.tableData.data = []
       this.tableData.loading = true
