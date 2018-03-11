@@ -16,6 +16,9 @@
         </template>
         <template slot="right"><i class="iconfont icon-front"></i></template>
       </wap-list-item>
+      <div style="margin: 15px;">
+        <wap-button type="danger" style="display: block" @click="onLogout">退出</wap-button>
+      </div>
     </wap-list>
     <wap-tabbar>
       <wap-tabbar-item @click.native="$router.push({name: 'Home'})">首页</wap-tabbar-item>
@@ -35,6 +38,13 @@ export default {
   methods: {
     facebookLogin () {
       window.location.href = `${process.env.API_ROOT}/auth/facebook?auth_origin_url=${process.env.WEB_HOST}/login`
+    },
+    onLogout () {
+      this.api.logout().then(() => {
+        this.$store.dispatch('logout')
+      }).catch(() => {
+        this.$store.dispatch('logout')
+      })
     }
   }
 }
