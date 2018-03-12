@@ -67,6 +67,13 @@ export default {
     Vue.component('WapRadio', (resolve) => {
       resolve(require('./Radio/src/Radio.vue'))
     })
+    // CheckBoxGroup CheckBox
+    Vue.component('WapCheckboxGroup', (resolve) => {
+      resolve(require('./Checkbox/src/CheckboxGroup.vue'))
+    })
+    Vue.component('WapCheckbox', (resolve) => {
+      resolve(require('./Checkbox/src/Checkbox.vue'))
+    })
     // dialog
     Vue.use(WapToastBox)
     Vue.prototype.wapUi.WapToastBox = WapToastBox
