@@ -60,6 +60,13 @@ export default {
     Vue.component('WapSwitch', (resolve) => {
       resolve(require('./Switch/src/switch.vue'))
     })
+    // RadioGroup Radio
+    Vue.component('WapRadioGroup', (resolve) => {
+      resolve(require('./Radio/src/RadioGroup.vue'))
+    })
+    Vue.component('WapRadio', (resolve) => {
+      resolve(require('./Radio/src/Radio.vue'))
+    })
     // dialog
     Vue.use(WapToastBox)
     Vue.prototype.wapUi.WapToastBox = WapToastBox
