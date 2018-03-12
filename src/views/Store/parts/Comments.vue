@@ -21,6 +21,11 @@ export default {
       comments: []
     }
   },
+  watch: {
+    store (nv) {
+      this.getStoreComments()
+    }
+  },
   methods: {
     getStoreComments () {
       this.api.getStoreComments(this.$route.params.id).then(res => {

@@ -51,14 +51,17 @@ export default {
     }
   },
   watch: {
-    showPop (newVal) {
-      this.form = {
-        rank: 0,
-        content: '',
-        anonymous: false,
-        attachment_image_ids: [],
-        attachment_images: []
-      }
+    showPop: {
+      handler (nv) {
+        this.form = {
+          rank: 0,
+          content: '',
+          anonymous: false,
+          attachment_image_ids: [],
+          attachment_images: []
+        }
+      },
+      immediate: true
     }
   },
   methods: {
