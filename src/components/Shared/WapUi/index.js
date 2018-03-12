@@ -19,9 +19,13 @@ export default {
     Vue.component('WapSlider', (resolve) => {
       resolve(require('./Slider/src/slider.vue'))
     })
-    // RollNotice
+    // RollNotice 垂直滚动
     Vue.component('WapRollNotice', (resolve) => {
       resolve(require('./RollNotice/src/rollNotice.vue'))
+    })
+    // ScrollNotice 水平滚动
+    Vue.component('WapScrollNotice', (resolve) => {
+      resolve(require('./ScrollNotice/src/scrollNotice.vue'))
     })
     // Input TextArea
     Vue.component('WapInput', (resolve) => {
