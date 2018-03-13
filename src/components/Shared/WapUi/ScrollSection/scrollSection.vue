@@ -210,6 +210,12 @@ export default {
           }
         })
       }
+    },
+    reset () {
+      this.bottomInfo = {
+        isScrollBottomFetching: false,
+        isScrollBottomFetchingFinished: false
+      }
     }
   },
   mounted () {

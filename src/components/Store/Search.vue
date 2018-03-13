@@ -1,7 +1,7 @@
 <template>
   <div>
     <wap-search v-model="currentValue" full-page placeholder="输入要搜索的店铺名称">
-      <div is="wap-scroll-section" :infinite-scroll="infiniteScroll" style="height: 100%">
+      <div is="wap-scroll-section" :infinite-scroll="infiniteScroll" style="height: 100%" ref="scrollSectionRef">
         <wap-list :title="`搜索结果(${paginateMeta.total_count})`">
           <wap-list-item class="wap-pointer" v-for="store in tableData.data" :key="store.id" @click.native.stop="$router.push({name: 'storeDetail', params: {id: store.id}})">
             <template slot="left">
@@ -28,7 +28,6 @@ export default {
   },
   data () {
     return {
-      stores: [],
       q: {
         page: 1,
         per_page: 10
@@ -43,6 +42,8 @@ export default {
       set (nv) {
         this.$emit('input', nv)
         this.reInit()
+        this.q = {page: 1, per_page: 10}
+        this.$refs['scrollSectionRef'].reset()
         this.fetchData(nv)
       }
     }
@@ -61,7 +62,7 @@ export default {
       if (this.q.page !== this.paginateMeta.total_pages) {
         this.q.page += 1
         this.fetchData().then(res => {
-          if (this.q.page === this.paginateMeta.total_pages) {
+          if (this.q.page >= this.paginateMeta.total_pages) {
             finished(true)
           } else {
             finished()
