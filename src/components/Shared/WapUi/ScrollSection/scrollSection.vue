@@ -58,7 +58,7 @@ export default {
     },
     pullEnableDoneDesc: {
       type: String,
-      default: '加载完成'
+      default: '刷新成功'
     },
     isScrollBottomFetchingDesc: {
       type: String,
@@ -129,7 +129,6 @@ export default {
   methods: {
     touchStart (event) {
       if (this.pullRefresh && !this.bottomInfo.isScrollBottomFetching && !this.topInfo.isPullRefreshFetching) {
-        console.log(11, this.topInfo.scrollTop)
         if (this.topInfo.scrollTop > 20) {
           this.topInfo.statusTop = 'default'
           return
@@ -216,7 +215,6 @@ export default {
   mounted () {
     if (this.domQuery) {
       let dom = document.querySelector(this.domQuery)
-      console.log(dom)
       dom && dom.addEventListener('scroll', (ev) => {
         this.topInfo.scrollTop = ev.target.scrollTop
       })
