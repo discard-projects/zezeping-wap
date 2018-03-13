@@ -15,12 +15,16 @@
     <div style="padding: 10px 20px; background: #fff">
       <store-item :store="store"></store-item>
     </div>
+    <div>
+      <Map :position="store.position" v-if="store.position"></Map>
+    </div>
     <!--评论-->
     <comments :store="store"></comments>
   </div>
 </template>
 
 <script>
+import Map from '@/components/Shared/Base/Map.vue'
 import StoreItem from '@/components/Store/Item'
 import Comments from './parts/Comments.vue'
 import NewComment from './parts/NewComment.vue'
@@ -44,7 +48,8 @@ export default {
   components: {
     StoreItem,
     Comments,
-    NewComment
+    NewComment,
+    Map
   }
 }
 </script>
