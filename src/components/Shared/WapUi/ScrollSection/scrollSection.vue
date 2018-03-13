@@ -75,6 +75,9 @@ export default {
     minHeightCanPullRefresh: {
       type: Number,
       default: 50
+    },
+    domQuery: {
+      type: String
     }
   },
   data () {
@@ -126,6 +129,7 @@ export default {
   methods: {
     touchStart (event) {
       if (this.pullRefresh && !this.bottomInfo.isScrollBottomFetching && !this.topInfo.isPullRefreshFetching) {
+        console.log(11, this.topInfo.scrollTop)
         if (this.topInfo.scrollTop > 20) {
           this.topInfo.statusTop = 'default'
           return
@@ -176,17 +180,17 @@ export default {
       el.style.transition = `.15s linear`
       if (el.canPullRefresh) {
         this.handlePullRefresh()
+        this.topInfo.scrollTop = 0
         el.style.transform = `translateY(${this.minHeightCanPullRefresh}px)`
       } else {
         el.style.transform = `translateY(0px)`
       }
       el.canPullRefresh = false
       this.topInfo.startPullRefresh = false
-      this.topInfo.scrollTop = 0
     },
     onScroll (event) {
-      console.log(event)
       let el = event.target
+      this.topInfo.scrollTop = el.scrollTop
       if (!this.topInfo.isPullRefreshFetching && this.infiniteScroll && !this.bottomInfo.isScrollBottomFetching && !this.bottomInfo.isScrollBottomFetchingFinished && el.scrollHeight - el.clientHeight - el.scrollTop <= this.infiniteScrollDistance) {
         this.bottomInfo.isScrollBottomFetching = true
         this.infiniteScroll((allFetched) => {
@@ -207,6 +211,15 @@ export default {
           }
         })
       }
+    }
+  },
+  mounted () {
+    if (this.domQuery) {
+      let dom = document.querySelector(this.domQuery)
+      console.log(dom)
+      dom && dom.addEventListener('scroll', (ev) => {
+        this.topInfo.scrollTop = ev.target.scrollTop
+      })
     }
   }
 }
