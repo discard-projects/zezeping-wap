@@ -1,8 +1,8 @@
 <template>
   <div class="wap-navbar-exist wap-tabbar-exist" style="box-sizing: content-box">
     <wap-navbar>首页</wap-navbar>
-
-    <div is="wap-scroll-section" :pull-refresh="getHome" style="height: 100%" dom-query="body">
+    <store-search v-model="searchValue"></store-search>
+    <div is="wap-scroll-section" :pull-refresh="getHome" dom-query="body">
       <wap-slider :autoplay="3000" loop style="height: 140px" v-if="home && home.banners.length">
         <div v-for="banner in home.banners" :key="banner.id"><img :src="banner.image.url"></div>
       </wap-slider>
@@ -13,7 +13,6 @@
       <!--<div>-->
       <!--<wap-search v-model="searchValue" placeholder="搜索"></wap-search>-->
       <!--</div>-->
-      <store-search v-model="searchValue"></store-search>
       <div v-if="home">
         <category-stores :name="category.name" v-for="category in home.categories" :key="category.id"></category-stores>
       </div>
