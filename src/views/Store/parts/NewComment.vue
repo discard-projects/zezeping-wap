@@ -28,7 +28,7 @@
         <wap-button type="primary" size="large" style="display: block" @click="handlerCreate">提交</wap-button>
       </div>
       <div style="margin: 15px;">
-        <wap-button @click="showPop = false" size="large" style="display: block">取消</wap-button>
+        <wap-button @click="showPop = false" size="large" style="display: block">关闭</wap-button>
       </div>
     </wap-list>
   </wap-popup>

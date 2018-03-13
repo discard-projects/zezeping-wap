@@ -43,14 +43,14 @@ export default {
       set (nv) {
         this.$emit('input', nv)
         this.reInit()
-        this.fetchData()
+        this.fetchData(nv)
       }
     }
   },
   methods: {
     beforeFetch () {},
-    fetchData () {
-      return this._fetchData(this.api.getStores(Object.assign({}, this.q, {q_name_cont: this.currentValue})))
+    fetchData (query) {
+      return this._fetchData(this.api.getStores(Object.assign({}, this.q, {q_name_cont: query})))
     },
     afterFetch (data) {
       this.paginateMeta = data.pagination

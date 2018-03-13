@@ -1,6 +1,6 @@
 *, *:before, *:after { box-sizing: inherit; }
 * { margin: 0; padding: 0; }
-html { box-sizing: border-box; position: fixed; left: 0; right: 0; top: 0; bottom: 0; overflow: hidden; }
+html { box-sizing: border-box; touch-action: manipulation; }
 html, body { height: 100%; }
 body { background-color: #F5F5F5; font-size: 12px; -webkit-font-smoothing: antialiased; font-family: arial, sans-serif; overflow: hidden }
 
