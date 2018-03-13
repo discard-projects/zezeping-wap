@@ -14,6 +14,8 @@ export default {
 
 <style>
   #app {
-    min-height: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 </style>

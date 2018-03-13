@@ -2,7 +2,7 @@
   <div class="wap-navbar-exist wap-tabbar-exist" style="box-sizing: content-box">
     <wap-navbar>首页</wap-navbar>
     <store-search v-model="searchValue"></store-search>
-    <div is="wap-scroll-section" :pull-refresh="getHome" dom-query="body">
+    <div is="wap-scroll-section" :pull-refresh="getHome" dom-query="#app">
       <wap-slider :autoplay="3000" loop style="height: 140px" v-if="home && home.banners.length">
         <div v-for="banner in home.banners" :key="banner.id"><img :src="banner.image.url"></div>
       </wap-slider>
