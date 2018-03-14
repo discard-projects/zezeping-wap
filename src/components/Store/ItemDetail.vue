@@ -1,18 +1,28 @@
 <template>
   <div class="store-item" v-if="store">
-    <img :src="store.logo.url" class="logo">
-    <div class="content-box">
-      <h3 class="title">{{store.name}}</h3>
-      <div class="sub">
-        <wap-rank :score="store.rank"></wap-rank><span>{{store.comments_count}}条</span>
+    <div class="base-info">
+      <img :src="store.logo.url" class="logo">
+      <div class="content-box">
+        <h3 class="title">{{store.name}}</h3>
+        <div class="sub">
+          <wap-rank :score="store.rank"></wap-rank><span>{{store.comments_count}}条</span>
+        </div>
+        <p class="desc" v-if="store.store_detail.phones.length">
+          电话： {{store.store_detail.phones.join(',')}}
+        </p>
+        <p class="desc categories">
+          <span v-for="(categoryName,index) in store.category_names" :key="index">{{categoryName}}</span>
+        </p>
       </div>
-      <p class="categories">
-        <span v-for="(categoryName,index) in store.category_names" :key="index">{{categoryName}}</span>
-      </p>
+      <wap-img-box >
+        <img :src="store.store_detail.wechat_qrcode.small.url" class="preview" style="width: 60px">
+      </wap-img-box>
     </div>
-    <wap-img-box >
-      <img :src="store.store_detail.wechat_qrcode.small.url" class="preview" style="width: 60px">
-    </wap-img-box>
+    <div class="attachment-images" v-if="store.attachment_images.length">
+      <wap-img-box>
+        <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in store.attachment_images" :key="index" class="preview att-img">
+      </wap-img-box>
+    </div>
   </div>
 </template>
 
@@ -28,47 +38,57 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.store-item {
+.base-info {
   display: flex;
-  padding: 10px;
-  padding-left: 0;
+  padding: 10px 0;
   line-height: 20px;
 
   .content-box {
     padding-left: 15px;
     flex: 1;
   }
-}
-.logo {
-  width: 70px;
-  max-height: 70px;
-}
-.title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 16px;
-  color: #323232;
-  margin-right: 3px;
-}
-.sub {
-  display: flex;
-  align-items: center;
-  color: #333;
-  line-height: 30px;
 
-  span {
-    padding-left: 10px;
+  .logo {
+    width: 70px;
+    max-height: 70px;
+  }
+  .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    color: #323232;
+    margin-right: 3px;
+  }
+  .sub {
+    display: flex;
+    align-items: center;
+    color: #333;
+    line-height: 30px;
+
+    span {
+      padding-left: 10px;
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+
+  .desc {
     font-size: 12px;
-    line-height: 12px;
+    line-height: 20px;
+    color: #999;
+  }
+  .categories {
+    span {
+      padding-right: 10px;
+    }
   }
 }
-.categories {
-  font-size: 12px;
-  line-height: 20px;
-  color: #999;
-  span {
-    padding-right: 10px;
+.attachment-images {
+  .att-img {
+    margin-right: 5px;
+    max-width: 60px;
+    max-height: 60px;
   }
 }
 </style>

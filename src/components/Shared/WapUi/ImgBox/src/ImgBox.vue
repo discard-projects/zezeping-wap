@@ -40,6 +40,10 @@ export default {
             cloneEl.style.transform = 'translate(-50%, -50%)'
           })
 
+          if (cloneEl.getAttribute('src2')) {
+            cloneEl.setAttribute('src', cloneEl.getAttribute('src2'))
+          }
+
           cloneEl.addEventListener('click', (ev) => {
             ev.stopPropagation()
             cloneEl.style.top = `${rect.top}px`
