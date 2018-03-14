@@ -20,3 +20,12 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+Vue.prototype.validLogin = () => {
+  console.log(store)
+  if (store.state.user.authInfo) {
+    return store.state.user.authInfo
+  } else {
+    Vue.prototype.wapUi.WapToastBox.new({message: '请先登录', timeout: 3000})
+  }
+}

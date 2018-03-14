@@ -7,7 +7,7 @@
         </wap-navbar-back-icon>
       </template>
       <template slot="right">
-        <span class="wap-pointer" @click="$refs['newCommentRef'].showPop = true">评论</span>
+        <span class="wap-pointer" @click="goComment">评论</span>
         <NewComment :store="store" ref="newCommentRef" @fetchData="getStoreInfo"></NewComment>
       </template>
       详情
@@ -40,6 +40,11 @@ export default {
       this.api.getStore(this.$route.params.id).then(res => {
         this.store = res.data.item
       })
+    },
+    goComment () {
+      if (this.validLogin()) {
+        this.$refs['newCommentRef'].showPop = true
+      }
     }
   },
   mounted () {

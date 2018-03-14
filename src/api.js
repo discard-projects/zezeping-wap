@@ -33,22 +33,22 @@ cusAxios.interceptors.response.use(function (response) {
   // Do something with response error
   if (error.response) {
     if (error.response.status === 403) {
-      Vue.prototype.wapUi.WapToastBox.new({message: 'token overdue!', icon: 'icon-error', timeout: 2000})
+      Vue.prototype.wapUi.WapToastBox.new({message: 'token overdue!', timeout: 2000})
       store.dispatch('logout')
     } else if (error.response.status === 401) {
-      Vue.prototype.wapUi.WapToastBox.new({ message: error.response.data.msg || error.response.data.errors, type: 'error', icon: 'icon-error', timeout: 2000 })
+      Vue.prototype.wapUi.WapToastBox.new({ message: error.response.data.msg || error.response.data.errors, type: 'error', timeout: 2000 })
       store.dispatch('logout')
     } else if (error.response.status === 429) {
-      Vue.prototype.wapUi.WapToastBox.new({ message: error.response.data, icon: 'icon-error', timeout: 2000 })
+      Vue.prototype.wapUi.WapToastBox.new({ message: error.response.data, timeout: 2000 })
     } else if (error.response.status === 500) {
-      Vue.prototype.wapUi.WapToastBox.new({ message: 'data error!', icon: 'icon-error', timeout: 2000 })
+      Vue.prototype.wapUi.WapToastBox.new({ message: 'data error!', timeout: 2000 })
     } else if (error.response.status === 404) {
-      Vue.prototype.wapUi.WapToastBox.new({ message: '404 Not Found!', icon: 'icon-error', timeout: 2000 })
+      Vue.prototype.wapUi.WapToastBox.new({ message: '404 Not Found!', timeout: 2000 })
     } else if (error.response.data && error.response.data.msg) {
-      Vue.prototype.wapUi.WapToastBox.new({ message: error.response.data.msg, icon: 'icon-error', timeout: 2000 })
+      Vue.prototype.wapUi.WapToastBox.new({ message: error.response.data.msg, timeout: 2000 })
     }
   } else {
-    Vue.prototype.wapUi.WapToastBox.new({ message: 'network error', icon: 'icon-error', timeout: 2000 })
+    Vue.prototype.wapUi.WapToastBox.new({ message: 'network error', timeout: 2000 })
   }
   return Promise.reject(error)
 })
