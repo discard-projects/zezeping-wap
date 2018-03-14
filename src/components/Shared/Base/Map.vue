@@ -1,5 +1,5 @@
 <template>
-  <googlemaps-map style="height: 200px" :center="position" :zoom="12">
+  <googlemaps-map style="height: 200px" :center="position" :zoom="14">
     <googlemaps-marker :position="position"></googlemaps-marker>
   </googlemaps-map>
 </template>
