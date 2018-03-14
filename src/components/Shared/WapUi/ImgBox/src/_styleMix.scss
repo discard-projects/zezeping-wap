@@ -1,0 +1,35 @@
+@mixin wap-img-box {
+  .wap-img-box {
+    .bg-wrapper {
+      position: fixed;
+      top: 0;  left: 0;  right: 0;  bottom: 0;
+      opacity: 0;
+      background: #000;
+      z-index: 200;
+    }
+
+    .preview-wrapper {
+      position: fixed;
+      top: 0;  left: 0;  right: 0;  bottom: 0;
+      z-index: 200;
+
+      img.preview {
+        position: relative;
+      }
+    }
+
+    .images-wrapper {
+      z-index: 201;
+      img.preview {
+        position: relative;
+        transition: all, .5s;
+      }
+    }
+
+    &.open-preview {
+      .bg-wrapper {
+        opacity: 0.8;
+      }
+    }
+  }
+}

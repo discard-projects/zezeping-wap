@@ -16,7 +16,7 @@
       <store-item :store="store"></store-item>
     </div>
     <div>
-      <Map :position="store.position" v-if="store.position"></Map>
+      <Map :position="store.position" v-if="store && store.position"></Map>
     </div>
     <!--评论-->
     <comments :store="store"></comments>

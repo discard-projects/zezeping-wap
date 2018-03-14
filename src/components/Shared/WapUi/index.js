@@ -78,6 +78,10 @@ export default {
     Vue.component('WapCheckbox', (resolve) => {
       resolve(require('./Checkbox/src/Checkbox.vue'))
     })
+    // img-box
+    Vue.component('WapImgBox', (resolve) => {
+      resolve(require('./ImgBox/src/ImgBox.vue'))
+    })
     // dialog
     Vue.use(WapToastBox)
     Vue.prototype.wapUi.WapToastBox = WapToastBox
