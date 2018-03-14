@@ -206,7 +206,7 @@ export default {
         moveOffset = this.touchInfo.offset.x
       }
       let wrapSize = this.wrapSize
-      if ((Math.abs(moveOffset) <= wrapSize * 0.3) || this.itemsCount <= 1 || (!this.loop && ((moveOffset > 0 && this.nowItemIndex === 0) || (moveOffset < 0 && this.nowItemIndex === this.itemsCount - 1)))) {
+      if ((Math.abs(moveOffset) <= wrapSize * 0.05) || this.itemsCount <= 1 || (!this.loop && ((moveOffset > 0 && this.nowItemIndex === 0) || (moveOffset < 0 && this.nowItemIndex === this.itemsCount - 1)))) {
         this.setTranslate(this.speed, -this.nowItemIndex * wrapSize)
       } else {
         this.setTranslate(this.speed, -((moveOffset > 0 ? --this.nowItemIndex : ++this.nowItemIndex) * wrapSize))
