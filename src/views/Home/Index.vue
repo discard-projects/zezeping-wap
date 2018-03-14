@@ -10,7 +10,7 @@
       <!--滚动公告-->
       <wap-roll-notice style="background: #fff; padding: 0 5px; margin: 8px 0">
         <div>一家专门做菲律宾华人服务的网站</div>
-        <div>各大店铺，期待你们的加入</div>
+        <div>各大店铺，期待你们的加入， 微信号：<span style="color: red">zezeping2018</span></div>
       </wap-roll-notice>
       <!-- 菜单 -->
       <wap-slider :showPagination="false" v-if="home">

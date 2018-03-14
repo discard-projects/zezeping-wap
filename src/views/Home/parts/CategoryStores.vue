@@ -23,14 +23,11 @@ export default {
   },
   data () {
     return {
-      q: {
-        per_page: 12
-      }
     }
   },
   methods: {
     fetchData () {
-      this._fetchData(this.api.getHomeStores(Object.assign({}, this.q, {category_name: this.name})))
+      this._fetchData(this.api.getHomeStores(Object.assign({}, this.q, {category_name: this.name, per_page: 5})))
     }
   },
   components: {
