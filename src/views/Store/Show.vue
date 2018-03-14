@@ -13,7 +13,7 @@
       详情
     </wap-navbar>
     <div style="padding: 10px 20px; background: #fff">
-      <store-item :store="store"></store-item>
+      <store-item-detail :store="store"></store-item-detail>
     </div>
     <div>
       <Map :position="store.position" v-if="store && store.position"></Map>
@@ -25,7 +25,7 @@
 
 <script>
 import Map from '@/components/Shared/Base/Map.vue'
-import StoreItem from '@/components/Store/Item'
+import StoreItemDetail from '@/components/Store/ItemDetail'
 import Comments from './parts/Comments.vue'
 import NewComment from './parts/NewComment.vue'
 export default {
@@ -46,7 +46,7 @@ export default {
     this.getStoreInfo()
   },
   components: {
-    StoreItem,
+    StoreItemDetail,
     Comments,
     NewComment,
     Map

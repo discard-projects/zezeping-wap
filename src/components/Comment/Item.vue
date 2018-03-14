@@ -8,7 +8,7 @@
         <li class="clearfix"><wap-rank class="fl" :score="comment.rank"></wap-rank></li>
         <li class="content">{{comment.content}}</li>
         <li class="attachments-box">
-          <wap-img-box ref="imgBoxRef">
+          <wap-img-box>
             <img :src="attachmentImage.file_small.url" v-for="(attachmentImage,index) in comment.attachment_images" :key="index" class="preview att-img">
           </wap-img-box>
         </li>
