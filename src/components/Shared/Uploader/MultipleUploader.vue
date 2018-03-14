@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { compressImage } from '@/libs/imgHandler.js'
 export default {
   name: 'MultipleUploader',
   props: {
@@ -39,10 +40,12 @@ export default {
   methods: {
     selectedFile (files) {
       if (files && files.length) {
-        let fd = new FormData()
-        fd.append('file', files[0])
-        this.api.postAttachmentImage(fd).then(res => {
-          this.selectValue = [...this.attachmentImages, res.data.item]
+        compressImage(files[0]).then(compressedFile => {
+          let fd = new FormData()
+          fd.append('file', compressedFile)
+          this.api.postAttachmentImage(fd).then(res => {
+            this.selectValue = [...this.attachmentImages, res.data.item]
+          })
         })
       }
     }
