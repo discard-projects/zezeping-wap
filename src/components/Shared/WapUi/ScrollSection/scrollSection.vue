@@ -223,6 +223,7 @@ export default {
       let dom = document.querySelector(this.domQuery)
       dom && dom.addEventListener('scroll', (ev) => {
         this.topInfo.scrollTop = ev.target.scrollTop
+        this.onScroll(ev)
       })
     }
   }

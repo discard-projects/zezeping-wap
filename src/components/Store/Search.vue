@@ -24,6 +24,9 @@ export default {
   props: {
     value: {
       require: true
+    },
+    categoryId: {
+      type: [String, Number]
     }
   },
   data () {
@@ -51,7 +54,7 @@ export default {
   methods: {
     beforeFetch () {},
     fetchData (query) {
-      return this._fetchData(this.api.getStores(Object.assign({}, this.q, {q_name_cont: query})))
+      return this._fetchData(this.api.getStores(Object.assign({}, this.q, {q_name_cont: query, q_categories_id_eq: this.categoryId})))
     },
     afterFetch (data) {
       this.paginateMeta = data.pagination

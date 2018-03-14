@@ -6,7 +6,7 @@
       <div class="wap-slider-item last" v-html="firstItemHtml" v-if="loop"></div>
     </div>
     <slot name="pagination">
-      <div class="slider-pagination-wrap">
+      <div class="slider-pagination-wrap" v-if="showPagination">
         <span class="slider-pagination-item" v-for="index in itemsCount" :class="{active: index - 1 === nowRealItemIndex}"  :key="index"></span>
       </div>
     </slot>
@@ -40,6 +40,10 @@ export default {
     loop: {
       type: Boolean,
       default: false
+    },
+    showPagination: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
