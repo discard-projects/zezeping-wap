@@ -12,6 +12,8 @@ Vue.config.productionTip = false
 
 Vue.use(api, {store})
 
+store.dispatch('getCurrentLocation')
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
