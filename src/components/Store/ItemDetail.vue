@@ -8,9 +8,10 @@
           <wap-rank :score="store.rank"></wap-rank><span>{{store.comments_count}}条</span>
         </div>
         <p class="desc" v-if="store.store_detail.phones.length">
-          电话： {{store.store_detail.phones.join(',')}}
+          <span>电话：</span> {{store.store_detail.phones.join(',')}}
         </p>
         <p class="desc categories">
+          分类：
           <span v-for="(categoryName,index) in store.category_names" :key="index">{{categoryName}}</span>
         </p>
       </div>
@@ -18,10 +19,16 @@
         <img :src="store.store_detail.wechat_qrcode.small.url" class="preview" style="width: 60px">
       </wap-img-box>
     </div>
-    <div class="attachment-images" v-if="store.attachment_images.length">
-      <wap-img-box>
-        <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in store.attachment_images" :key="index" class="preview att-img">
-      </wap-img-box>
+    <div class="detail-info">
+      <p class="desc address" v-if="store.address">
+        <span class="fl">地址：</span>
+        <span style="overflow: auto">{{store.address}}</span>
+      </p>
+      <div class="attachment-images" v-if="store.attachment_images.length">
+        <wap-img-box>
+          <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in store.attachment_images" :key="index" class="preview att-img">
+        </wap-img-box>
+      </div>
     </div>
   </div>
 </template>
@@ -40,7 +47,7 @@ export default {
 <style lang="scss" scoped>
 .base-info {
   display: flex;
-  padding: 10px 0;
+  padding-top: 10px;
   line-height: 20px;
 
   .content-box {
@@ -84,11 +91,19 @@ export default {
     }
   }
 }
-.attachment-images {
-  .att-img {
-    margin-right: 5px;
-    max-width: 60px;
-    max-height: 60px;
+.detail-info {
+  .desc {
+    font-size: 12px;
+    line-height: 20px;
+    color: #999;
+  }
+
+  .attachment-images {
+    .att-img {
+      margin-right: 5px;
+      max-width: 60px;
+      max-height: 60px;
+    }
   }
 }
 </style>
