@@ -14,14 +14,13 @@
       </wap-roll-notice>
       <!-- 菜单 -->
       <wap-slider :showPagination="false" v-if="home">
-        <div class="buttons-box">
+        <div class="buttons-box" v-for="(categories,index) in calCategoryGroups" :key="index">
           <ul class="buttons-wrap">
-            <li v-for="category in home.categories" :key="category.id">
-              <span class="button" style="background: #f5b94f;" @click="$router.push({name: 'CategoryHome', params: {id: category.id}})" v-if="category.name === '美食'">美食</span>
-              <span class="button" style="background: #4e95d9;" @click="$router.push({name: 'CategoryHome', params: {id: category.id}})" v-if="category.name === '生活服务'">生活服务</span>
-              <span class="button" style="background: #8351f5;" @click="$router.push({name: 'CategoryHome', params: {id: category.id}})" v-if="category.name === '休闲娱乐'">休闲娱乐</span>
-              <span class="button" style="background: #5ba8d6;" @click="$router.push({name: 'CategoryHome', params: {id: category.id}})" v-if="category.name === '购物'">购物</span>
-              <span class="button" style="background: #5ba8d6;" @click="$router.push({name: 'CategoryHome', params: {id: category.id}})" v-if="category.name === '丽人'">丽人</span>
+            <li v-for="category in categories" :key="category.id">
+              <div class="button-item">
+                <img :src="category.logo_thumb.url">
+                <p>{{category.name}}</p>
+              </div>
             </li>
           </ul>
         </div>
@@ -55,6 +54,14 @@ export default {
       searchValue: ''
     }
   },
+  computed: {
+    calCategoryGroups () {
+      if (this.home && this.home.categories.length) {
+        return this.home.categories.chunk(4)
+      }
+      return []
+    }
+  },
   methods: {
     getHome (finished) {
       this.api.getHome().then(res => {
@@ -85,15 +92,16 @@ export default {
       align-items: center;
       justify-content: space-around;
       height: 80px;
+      line-height: 18px;
+      color: #333;
 
-      .button {
+      .button-item {
         display: inline-block;
-        height: 60px;
-        width: 60px;
-        line-height: 60px;
+        height: 40px;
+        width: 40px;
         text-align: center;
-        font-size: 13px;
-        border-radius: 30px;
+        font-size: 12px;
+        border-radius: 20px;
 
         @include tap;
       }
