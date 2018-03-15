@@ -118,7 +118,7 @@ export default {
       } else {
         this.topInfo.statusTop = 'done'
         setTimeout(() => {
-          this.$refs['innerWrapRef'].style.transform = `translateY(0px)`
+          this.$refs['innerWrapRef'].style.transform = `none`
         }, 300)
         // 重置infinite-scroll
         this.bottomInfo.isScrollBottomFetching = false
@@ -182,7 +182,7 @@ export default {
         this.topInfo.scrollTop = 0
         el.style.transform = `translateY(${this.minHeightCanPullRefresh}px)`
       } else {
-        el.style.transform = `translateY(0px)`
+        el.style.transform = `none`
       }
       el.canPullRefresh = false
       this.topInfo.startPullRefresh = false

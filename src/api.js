@@ -85,7 +85,9 @@ var api = {
   postStoreComment: (storeId, data) => cusAxios.post(`v1/stores/${storeId}/comments`, data),
   postAttachmentImage: (data) => cusAxios.post('v1/attachment_images', data, {headers: { 'Content-Type': 'multipart/form-data' }}),
   // category
-  getCategory: (id) => cusAxios.get(`v1/categories/${id}`)
+  getCategory: (id) => cusAxios.get(`v1/categories/${id}`),
+  // moments
+  getMoments: (params) => cusAxios.get(`v1/moments`, { params })
 }
 api.install = function (Vue, options) {
   if (options.store) {

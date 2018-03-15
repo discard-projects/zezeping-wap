@@ -1,5 +1,5 @@
 <template>
-  <div class="wap-img-box" :class="{'open-preview': isPreviewMode}">
+  <div class="wap-img-box" :class="{'open-preview': isPreviewMode}" @touchstart.stop>
     <div class="bg-wrapper" v-if="isPreviewMode"></div>
     <div class="preview-wrapper" ref="previewRef" v-show="isPreviewMode" @click="closePreview()"></div>
     <div class="images-wrapper">
