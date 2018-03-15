@@ -13,11 +13,11 @@
         <div>各大店铺，期待你们的加入， 微信号：<span style="color: red">zezeping2018</span></div>
       </wap-roll-notice>
       <!-- 菜单 -->
-      <wap-slider :showPagination="false" v-if="home">
+      <wap-slider v-if="home">
         <div class="buttons-box" v-for="(categories,index) in calCategoryGroups" :key="index">
           <ul class="buttons-wrap">
             <li v-for="category in categories" :key="category.id">
-              <div class="button-item">
+              <div class="button-item" @click="clickButtonGo(category)">
                 <img :src="category.logo_thumb.url">
                 <p>{{category.name}}</p>
               </div>
@@ -56,10 +56,17 @@ export default {
   },
   computed: {
     calCategoryGroups () {
+      let data = [{
+        logo_thumb: {
+          url: require('../../assets/images/stores_moments.png')
+        },
+        route: { name: 'Moment' },
+        name: '商圈'
+      }]
       if (this.home && this.home.categories.length) {
-        return this.home.categories.chunk(4)
+        return data.concat(this.home.categories).chunk(4)
       }
-      return []
+      return data
     }
   },
   methods: {
@@ -70,6 +77,13 @@ export default {
       }).catch(() => {
         finished && finished()
       })
+    },
+    clickButtonGo (category) {
+      if (category.route) {
+        this.$router.push(category.route)
+      } else {
+        this.$router.push({name: 'CategoryHome', params: {id: category.id}})
+      }
     }
   },
   mounted () {
@@ -86,6 +100,7 @@ export default {
   .buttons-box {
     width: 100%;
     background: #fff;
+    padding-bottom: 10px;
 
     .buttons-wrap {
       display: flex;

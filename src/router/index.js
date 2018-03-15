@@ -13,7 +13,9 @@ let router = new Router({
     { path: '/personal', name: 'Personal', component: (resolve) => { require(['@/views/Personal/Index'], resolve) } },
     { path: '/profile', name: 'Profile', component: (resolve) => { require(['@/views/Personal/parts/Profile'], resolve) } },
     // Category Home
-    { path: '/categories/:id', name: 'CategoryHome', component: (resolve) => { require(['@/views/Category/Index'], resolve) } }
+    { path: '/categories/:id', name: 'CategoryHome', component: (resolve) => { require(['@/views/Category/Index'], resolve) } },
+    // 商圈
+    { path: '/moments', name: 'Moment', component: (resolve) => { require(['@/views/Moment/Index'], resolve) } }
   ]
 })
 
