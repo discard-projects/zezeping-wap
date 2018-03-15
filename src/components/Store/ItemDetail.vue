@@ -21,9 +21,11 @@
     </div>
     <div class="detail-info">
       <p class="desc address" v-if="store.address">
-        <span class="fl">地址：</span>
-        <span style="overflow: auto">{{store.address}}</span>
+        地址：{{store.address}}
       </p>
+      <div class="desc address" v-if="store.desc">
+        <pre>描述：{{store.desc}}</pre>
+      </div>
       <div class="attachment-images" v-if="store.attachment_images.length">
         <wap-img-box>
           <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in store.attachment_images" :key="index" class="preview att-img">
