@@ -24,7 +24,7 @@
         地址：{{store.address}}
       </p>
       <div class="desc address" v-if="store.desc">
-        <pre>描述：{{store.desc}}</pre>
+        <pre style="white-space: pre-line;">描述：{{store.desc}}</pre>
       </div>
       <div class="attachment-images" v-if="store.attachment_images.length">
         <wap-img-box>
