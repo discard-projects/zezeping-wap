@@ -37,12 +37,6 @@ cusAxios.interceptors.response.use(function (response) {
   }
   return response
 }, function (error) {
-  try {
-    error.response.data = rotten.decode(error.response.data)
-    error.response.data = JSON.parse(error.response.data)
-  } catch (err) {
-    console.log(err)
-  }
   // Do something with response error
   if (error.response) {
     if (error.response.status === 403) {
