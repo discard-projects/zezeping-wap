@@ -3,7 +3,7 @@
     <img :src="moment.store.logo_thumb.url" class="logo fl">
     <div class="content-box">
       <h4 class="store-name" @click="$router.push({name: 'storeDetail', params: {id: moment.store.id}})">{{ moment.store.name }}</h4>
-      <div class="content">{{ moment.content }}</div>
+      <div class="content like-pre">{{ moment.content }}</div>
       <div class="attachment-images" v-if="moment.attachment_images.length">
         <wap-img-box>
           <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in moment.attachment_images" :key="index" :class="{[`img-count-${moment.attachment_images.length}`]: true}" class="preview att-img">
@@ -54,6 +54,7 @@ export default {
 
     .content {
       color: #444;
+      padding-top: 5px;
     }
 
     .attachment-images {
