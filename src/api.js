@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+const rotten = require('rotten-encryption2')('zezeping', true)
 let store = null
 const cusAxios = axios.create({
   baseURL: process.env.API_ROOT,
@@ -22,6 +23,12 @@ cusAxios.interceptors.request.use(function (config) {
 })
 // Add a response interceptor
 cusAxios.interceptors.response.use(function (response) {
+  try {
+    response.data = rotten.decode(response.data)
+    response.data = JSON.parse(response.data)
+  } catch (err) {
+    console.log(err)
+  }
   // Do something with response data
   if (response.data.msg) {
     Vue.prototype.wapUi.WapToastBox.new({message: response.data.msg, icon: 'icon-success', timeout: 2000})
@@ -30,6 +37,12 @@ cusAxios.interceptors.response.use(function (response) {
   }
   return response
 }, function (error) {
+  try {
+    error.response.data = rotten.decode(error.response.data)
+    error.response.data = JSON.parse(error.response.data)
+  } catch (err) {
+    console.log(err)
+  }
   // Do something with response error
   if (error.response) {
     if (error.response.status === 403) {
