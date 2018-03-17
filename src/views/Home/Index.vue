@@ -6,7 +6,7 @@
       <!--轮播图-->
       <wap-swiper :interval="3000" v-if="home && home.banners.length" style="height: 140px">
         <wap-swiper-item  v-for="banner in home.banners" :key="banner.id">
-          <img :src="banner.image.url" style="max-width: 100%">
+          <img :src="banner.image.url" style="max-width: 100%" @click="preview">
         </wap-swiper-item>
       </wap-swiper>
       <!--滚动公告-->

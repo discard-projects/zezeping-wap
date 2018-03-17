@@ -3,7 +3,9 @@ export default {
     return {
       touchInfo: {
         start: {x: 0, y: 0, timestamp: 0, identifier: ''},
+        beforeMoving: {x: 0, y: 0, timestamp: 0},
         moving: {x: 0, y: 0, timestamp: 0},
+        beforeOffset: {x: 0, y: 0},
         offset: {x: 0, y: 0},
         // start moving end
         current: 'end'
@@ -22,6 +24,8 @@ export default {
     onTouchMove (event) {
       const {pageX, pageY, timestamp} = this.handleEvent(event)
       const touchAngle = Math.atan2(Math.abs(pageY - this.touchInfo.start.y), Math.abs(pageX - this.touchInfo.start.x)) * 180 / Math.PI
+      this.touchInfo.beforeMoving = this.touchInfo.moving
+      this.touchInfo.beforeOffset = this.touchInfo.offset
       this.touchInfo.moving = {x: pageX, y: pageY, touchAngle: touchAngle, timestamp}
       this.touchInfo.offset = {x: pageX - this.touchInfo.start.x, y: pageY - this.touchInfo.start.y}
       this.touchInfo.current = 'moving'

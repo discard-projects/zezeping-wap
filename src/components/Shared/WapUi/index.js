@@ -85,6 +85,9 @@ export default {
     Vue.component('WapImgBox', (resolve) => {
       resolve(require('./ImgBox/src/ImgBox.vue'))
     })
+    Vue.component('ImgBox', (resolve) => {
+      resolve(require('./ImgPreview/src/ImgBox.vue'))
+    })
     // dialog
     Vue.use(WapToastBox)
     Vue.prototype.wapUi.WapToastBox = WapToastBox

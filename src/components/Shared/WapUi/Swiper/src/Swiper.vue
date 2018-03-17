@@ -86,15 +86,17 @@ export default {
     _onTouchEnd (end, event) {
       if (!this.isStarting) return
       this.isStarting = false
-      let moveOffset
+      let moveOffset, beforeOffset
       if (this.isVertical) {
         moveOffset = this.touchInfo.offset.y
+        beforeOffset = this.touchInfo.beforeOffset.y
       } else {
         moveOffset = this.touchInfo.offset.x
+        beforeOffset = this.touchInfo.beforeOffset.x
       }
-      if (moveOffset > 0 && Math.abs(moveOffset) > this.swiperSize * 0.03) {
+      if (moveOffset > 0 && beforeOffset < moveOffset && Math.abs(moveOffset) > this.swiperSize * 0.03) {
         this.goToPreIndex()
-      } else if (moveOffset < 0 && Math.abs(moveOffset) > this.swiperSize * 0.03) {
+      } else if (moveOffset < 0 && beforeOffset > moveOffset && Math.abs(moveOffset) > this.swiperSize * 0.03) {
         this.goToNextIndex()
       } else {
         this.goToIndex(this.nowItemIndex)

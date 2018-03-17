@@ -6,6 +6,9 @@
     background: #fff;
 
     &.horizontal {
+      .default-swiper-box {
+        align-items: center;
+      }
       .pagination-wrap {
         height: pxRem(16);
         bottom: 0; left: 0; right: 0;
@@ -16,6 +19,9 @@
       }
     }
     &.vertical {
+      .default-swiper-box {
+        flex-direction: column;
+      }
       .pagination-wrap {
         flex-direction: column;
         width: pxRem(30);
@@ -31,12 +37,6 @@
       display: flex;
       height: 100%;
       width: 100%;
-    }
-
-    &.vertical {
-      .default-swiper-box {
-        flex-direction: column;
-      }
     }
 
     .pagination-wrap {

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import touchMixin from './touchMixin'
+import touchMixin from '../_utils/mixins/touchMixin'
 export default {
   name: 'ScrollSection',
   mixins: [touchMixin],
