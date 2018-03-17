@@ -15,9 +15,12 @@ export default {
     Vue.component('WapScrollSection', (resolve) => {
       resolve(require('./ScrollSection/scrollSection.vue'))
     })
-    // slider
-    Vue.component('WapSlider', (resolve) => {
-      resolve(require('./Slider/src/slider.vue'))
+    // swiper swiper-item
+    Vue.component('WapSwiper', (resolve) => {
+      resolve(require('./Swiper/src/Swiper.vue'))
+    })
+    Vue.component('WapSwiperItem', (resolve) => {
+      resolve(require('./Swiper/src/SwiperItem.vue'))
     })
     // RollNotice 垂直滚动
     Vue.component('WapRollNotice', (resolve) => {

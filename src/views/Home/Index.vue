@@ -4,36 +4,35 @@
     <store-search v-model="searchValue"></store-search>
     <div is="wap-scroll-section" :pull-refresh="getHome" dom-query="#app">
       <!--轮播图-->
-      <wap-slider :autoplay="3000" loop style="height: 140px" v-if="home && home.banners.length">
-        <div v-for="banner in home.banners" :key="banner.id"><img :src="banner.image.url"></div>
-      </wap-slider>
+      <wap-swiper :interval="3000" v-if="home && home.banners.length" style="height: 140px">
+        <wap-swiper-item  v-for="banner in home.banners" :key="banner.id">
+          <img :src="banner.image.url" style="max-width: 100%">
+        </wap-swiper-item>
+      </wap-swiper>
       <!--滚动公告-->
       <wap-roll-notice style="background: #fff; padding: 0 5px; margin: 8px 0">
         <div>一家专门做菲律宾华人服务的网站</div>
         <div>各大店铺，期待你们的加入， 微信号：<span style="color: red">zezeping2018</span></div>
       </wap-roll-notice>
       <!-- 菜单 -->
-      <wap-slider v-if="home">
-        <div class="buttons-box" v-for="(categories,index) in calCategoryGroups" :key="index">
+      <wap-swiper :interval="0" :loop="false" v-if="home">
+        <wap-swiper-item class="buttons-box" v-for="(categories,index) in calCategoryGroups" :key="index">
           <ul class="buttons-wrap">
             <li v-for="category in categories" :key="category.id">
               <div class="button-item" @click="clickButtonGo(category)">
-                <img :src="category.logo_thumb.url">
+                <img :src="category.logo_thumb.url" style="max-width: 100%">
                 <p>{{category.name}}</p>
               </div>
             </li>
           </ul>
-        </div>
-      </wap-slider>
-
-      <!--<div>-->
-      <!--<wap-search v-model="searchValue" placeholder="搜索"></wap-search>-->
-      <!--</div>-->
+        </wap-swiper-item>
+      </wap-swiper>
+      <!--stores-->
       <div v-if="home">
         <category-stores :name="category.name" v-for="category in home.categories" :key="category.id"></category-stores>
       </div>
     </div>
-
+    <!-- tabbar -->
     <wap-tabbar>
       <wap-tabbar-item class="active" @click.native.stop="$router.push({name: 'Home'})">首页</wap-tabbar-item>
       <wap-tabbar-item @click.native.stop="$router.push({name: 'Personal'})">个人中心</wap-tabbar-item>

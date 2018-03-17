@@ -2,7 +2,7 @@ export default {
   data () {
     return {
       touchInfo: {
-        start: {x: 0, y: 0, timestamp: 0},
+        start: {x: 0, y: 0, timestamp: 0, identifier: ''},
         moving: {x: 0, y: 0, timestamp: 0},
         offset: {x: 0, y: 0},
         // start moving end
@@ -13,8 +13,8 @@ export default {
   methods: {
     _onTouchStart (start, event) { console.log('touch start', start) },
     onTouchStart (event) {
-      const {pageX, pageY, timestamp} = this.handleEvent(event)
-      this.touchInfo.start = {x: pageX, y: pageY, timestamp}
+      const {pageX, pageY, timestamp, identifier} = this.handleEvent(event)
+      this.touchInfo.start = {x: pageX, y: pageY, timestamp, identifier}
       this.touchInfo.current = 'start'
       this._onTouchStart(this.touchInfo.start, event)
     },
@@ -34,25 +34,32 @@ export default {
       this._onTouchEnd(this.touchInfo.moving, event)
     },
     handleEvent (event) {
-      let touches = event.touches
-      let timeStamp = event.timeStamp
-      if (touches.length == null) {
-        throw new Error('Invalid touch list: ' + touches)
+      let pageX, pageY, timeStamp, identifier, touches
+      if (event.changedTouches) {
+        touches = event.changedTouches
+        identifier = event.changedTouches[0].identifier
+        timeStamp = event.timeStamp
+        if (touches.length == null) {
+          throw new Error('Invalid touch list: ' + touches)
+        }
+        if (timeStamp instanceof Date) {
+          timeStamp = timeStamp.valueOf()
+        }
+        if (typeof timeStamp !== 'number') {
+          throw new Error('Invalid timestamp value: ' + timeStamp)
+        }
+        pageX = touches[0].pageX
+        pageY = touches[0].pageY
+        // multiple touch
+        if (touches.length > 1) {
+          pageX = Math.abs(touches[0].pageX + touches[1].pageX) / 2
+          pageY = Math.abs(touches[0].pageY + touches[1].pageY) / 2
+        }
+      } else {
+        pageX = event.pageX
+        pageY = event.pageY
       }
-      if (timeStamp instanceof Date) {
-        timeStamp = timeStamp.valueOf()
-      }
-      if (typeof timeStamp !== 'number') {
-        throw new Error('Invalid timestamp value: ' + timeStamp)
-      }
-      let pageX = touches[0].pageX
-      let pageY = touches[0].pageY
-      // multiple touch
-      if (touches.length > 1) {
-        pageX = Math.abs(touches[0].pageX + touches[1].pageX) / 2
-        pageY = Math.abs(touches[0].pageY + touches[1].pageY) / 2
-      }
-      return {pageX, pageY, timeStamp, touches}
+      return {pageX, pageY, timeStamp, identifier, touches}
     }
   }
 }
