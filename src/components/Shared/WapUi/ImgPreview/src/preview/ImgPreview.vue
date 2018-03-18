@@ -170,6 +170,7 @@ export default {
   .wap-img-box-img-preview {
     img {
       max-width: 100%;
+      max-height: 85%;
     }
   }
 </style>
