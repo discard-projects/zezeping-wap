@@ -5,7 +5,7 @@ import store from '@/store'
 Vue.use(Router)
 
 let router = new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     { path: '/', name: 'Home', component: (resolve) => { require(['@/views/Home/Index'], resolve) } },
     { path: '/login', name: 'Login', component: (resolve) => { require(['@/views/Login'], resolve) } },
