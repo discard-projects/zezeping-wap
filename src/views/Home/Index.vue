@@ -113,12 +113,15 @@ export default {
       .button-item {
         display: inline-block;
         height: 40px;
-        width: 40px;
+        width: 100%;
         text-align: center;
         font-size: 12px;
         border-radius: 20px;
 
         @include tap;
+        img {
+          width: 40px;
+        }
       }
     }
   }
