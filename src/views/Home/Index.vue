@@ -18,8 +18,8 @@
       <wap-swiper :interval="0" :loop="false" v-if="home">
         <wap-swiper-item class="buttons-box" v-for="(categories,index) in calCategoryGroups" :key="index">
           <ul class="buttons-wrap">
-            <li v-for="category in categories" :key="category.id">
-              <div class="button-item" @click="clickButtonGo(category)">
+            <li v-for="category in categories" :key="category.id" style="flex: 1; text-align: center" @click="clickButtonGo(category)">
+              <div class="button-item">
                 <img :src="category.logo_thumb.url" style="max-width: 100%">
                 <p>{{category.name}}</p>
               </div>
@@ -78,6 +78,7 @@ export default {
       })
     },
     clickButtonGo (category) {
+      console.log('clci')
       if (category.route) {
         this.$router.push(category.route)
       } else {
