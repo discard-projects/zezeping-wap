@@ -7,6 +7,8 @@ import store from './store'
 import api from './api'
 import '@/libs/prototype'
 import './assets/stylesheets/application.scss'
+// ydui
+import 'vue-ydui/dist/ydui.base.css'
 import './components/common'
 
 Vue.config.productionTip = false

@@ -12,20 +12,52 @@
       </template>
       详情
     </wap-navbar>
+    <!--info -->
     <div style="padding: 10px 20px; background: #fff">
-      <store-item-detail :store="store"></store-item-detail>
+      <store-item :store="store"></store-item>
     </div>
-    <div>
-      <Map :position="store.position" v-if="store && store.position"></Map>
-    </div>
-    <!--评论-->
-    <comments :store="store"></comments>
+    <!--info detail-->
+    <yd-tab class="more-detail-box" v-if="store">
+      <yd-tab-panel label="详情" class="item-box detail-box">
+        <ul>
+          <li v-if="store.store_detail.phones.length">
+            <span class="label">联系电话</span>
+            <div class="desc">{{ store.store_detail.phones.join('，') }}</div>
+          </li>
+          <li v-if="store.open_time_desc">
+            <span class="label">营业时间</span>
+            <div class="desc">{{ store.open_time_desc }}</div>
+          </li>
+          <li v-if="store.address">
+            <span class="label">地址</span>
+            <div class="desc">{{ store.address }}</div>
+          </li>
+          <li v-if="store.desc">
+            <span class="label">描述</span>
+            <div class="desc">{{ store.desc }}</div>
+          </li>
+        </ul>
+      </yd-tab-panel>
+      <yd-tab-panel :label="`图片(${store.attachment_images.length})`" class="item-box images-box" v-if="store.attachment_images.length">
+        <wap-img-box style="width: 100%">
+          <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in store.attachment_images" :key="index">
+        </wap-img-box>
+      </yd-tab-panel>
+      <yd-tab-panel label="地图" v-if="store && store.position">
+        <Map :position="store.position" style="height: 400px"></Map>
+      </yd-tab-panel>
+      <yd-tab-panel :label="`评论(${store.comments_count})`" v-if="store.comments_count">
+        <!--评论-->
+        <comments :store="store"></comments>
+      </yd-tab-panel>
+    </yd-tab>
   </div>
 </template>
 
 <script>
 import Map from '@/components/Shared/Base/Map.vue'
-import StoreItemDetail from '@/components/Store/ItemDetail'
+import StoreItem from '@/components/Store/Item'
+import {Tab, TabPanel} from 'vue-ydui/dist/lib.px/tab'
 import Comments from './parts/Comments.vue'
 import NewComment from './parts/NewComment.vue'
 export default {
@@ -51,10 +83,40 @@ export default {
     this.getStoreInfo()
   },
   components: {
-    StoreItemDetail,
+    StoreItem,
     Comments,
     NewComment,
-    Map
+    Map,
+    [Tab.name]: Tab,
+    [TabPanel.name]: TabPanel
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .more-detail-box {
+    .item-box {
+      padding: 5px 10px;
+      .label {
+        color: #666;
+        line-height: 24px;
+      }
+      .desc {
+        font-size: 14px;
+      }
+    }
+    .detail-box {
+      li {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f2f2f2;
+      }
+    }
+
+    .images-box {
+      img {
+        width: 30%;
+        padding: 10px;
+      }
+    }
+  }
+</style>

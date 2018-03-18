@@ -1,6 +1,6 @@
 <template>
   <div class="wap-list">
-    <div class="title">
+    <div class="title" v-if="!noTitle">
       <slot name="title">
         <span v-html="title"></span>
       </slot>
@@ -13,7 +13,8 @@
 export default {
   name: 'WapList',
   props: {
-    title: [String]
+    title: [String],
+    noTitle: [Boolean]
   }
 }
 </script>
