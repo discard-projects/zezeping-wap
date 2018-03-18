@@ -3,7 +3,7 @@
     <div class="preview-wrapper">
       <div class="pagination">{{nowIndex + 1}}/{{urls.length}}</div>
       <img src="./close.svg" class="close-btn" @click="closePreview()"/>
-      <wap-swiper :interval="0" :loop="false" :pagination="false" @change="indexChange" ref="swiperRef" style="height: 100%; background: inherit; position: relative; z-index: 1000">
+      <wap-swiper :interval="0" :loop="false" :pagination="false" @change="indexChange" :class="{'hide': firstInit}" ref="swiperRef" style="height: 100%; background: inherit; position: relative; z-index: 1000">
         <wap-swiper-item v-for="(url, index) in urls" :key="index" style="display: flex; align-items: center; justify-content: center">
           <img :src="url" alt="">
         </wap-swiper-item>
@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      firstInit: false,
+      firstInit: true,
       currentEl: null,
       nowIndex: -1
     }
@@ -50,17 +50,21 @@ export default {
       el.beforeProperty = el.beforeProperty ? el.beforeProperty : this.getProperty(el)
       el.style.transformOrigin = 'left top'
       el.style.position = 'relative'
-      el.style.zIndex = '1100'
-      el.style.transition = 'transform 333ms cubic-bezier(0.4, 0, 0.22, 1)'
+      if (this.firstInit) {
+        this.$el.style.opacity = 1
+        el.style.zIndex = '1102'
+        this.nowIndex = this.imgDoms.indexOf(el)
+        this.initSwiperPosition()
+      } else {
+        el.style.zIndex = '1100'
+      }
+      el.style.transition = 'transform 320ms cubic-bezier(0.4, 0, 0.22, 1)'
       this.transform(el, this.calEndStatus(el))
-      this.currentEl = el
       let transitionend = (ev) => {
         let el = ev.target
-        if (!this.firstInit) {
-          this.firstInit = true
-          this.$el.style.opacity = 1
-          this.nowIndex = this.imgDoms.indexOf(el)
-          this.initSwiperPosition()
+        if (this.firstInit) {
+          this.firstInit = false
+          el.style.zIndex = '1100'
         }
         el.removeEventListener('transitionend', transitionend)
       }
