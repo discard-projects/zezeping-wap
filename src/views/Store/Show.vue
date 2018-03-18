@@ -36,6 +36,14 @@
             <span class="label">描述</span>
             <div class="desc">{{ store.desc }}</div>
           </li>
+          <li v-if="store.store_detail.wechat_qrcode.thumb.url">
+            <span class="label">微信二维码</span>
+            <div class="desc">
+              <wap-img-box>
+                <img :src="store.store_detail.wechat_qrcode.thumb.url" :src2="store.store_detail.wechat_qrcode.small.url" style="width: 80px">
+              </wap-img-box>
+            </div>
+          </li>
         </ul>
       </yd-tab-panel>
       <yd-tab-panel :label="`图片(${store.attachment_images.length})`" class="item-box images-box" v-if="store.attachment_images.length">
