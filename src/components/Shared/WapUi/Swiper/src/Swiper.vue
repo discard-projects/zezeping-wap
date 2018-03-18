@@ -135,6 +135,10 @@ export default {
           }
           this.$emit('change', this.nowItemIndex)
         }, this.duration)
+      } else {
+        if (this.nowItemIndex !== toIndex) {
+          this.nowItemIndex = toIndex
+        }
       }
     },
     goToNextIndex () {

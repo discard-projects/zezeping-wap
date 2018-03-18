@@ -16,10 +16,13 @@ export default {
   },
   data () {
     return {
-      urls: []
+      imgDoms: []
     }
   },
   methods: {
+    openPreviewBox (event) {
+      ImgPreview.new({event, imgDoms: this.imgDoms})
+    },
     getImgDoms () {
       this.$nextTick(() => {
         let imgDoms = []
@@ -30,10 +33,9 @@ export default {
           imgDoms = this.$el.querySelectorAll('img')
         }
         if (imgDoms.length) {
+          this.imgDoms = [...imgDoms]
           Array.prototype.forEach.call(imgDoms, (dom) => {
-            dom.addEventListener('click', (event) => {
-              ImgPreview.new({event, imgDoms: [...imgDoms]})
-            })
+            dom.addEventListener('click', this.openPreviewBox, false)
           })
         }
       })

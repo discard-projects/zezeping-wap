@@ -15,8 +15,8 @@
           <span v-for="(categoryName,index) in store.category_names" :key="index">{{categoryName}}</span>
         </p>
       </div>
-      <wap-img-box >
-        <img :src="store.store_detail.wechat_qrcode.small.url" class="preview" style="width: 60px">
+      <wap-img-box>
+        <img :src="store.store_detail.wechat_qrcode.thumb.url" :src2="store.store_detail.wechat_qrcode.small.url" style="width: 60px">
       </wap-img-box>
     </div>
     <div class="detail-info">

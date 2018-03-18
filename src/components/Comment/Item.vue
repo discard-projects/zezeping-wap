@@ -9,7 +9,7 @@
         <li class="content">{{comment.content}}</li>
         <li class="attachments-box">
           <wap-img-box>
-            <img :src="attachmentImage.file_small.url" v-for="(attachmentImage,index) in comment.attachment_images" :key="index" class="preview att-img">
+            <img :src="attachmentImage.file_thumb.url" :src2="attachmentImage.file_small.url" v-for="(attachmentImage,index) in comment.attachment_images" :key="index" class="preview att-img">
           </wap-img-box>
         </li>
       </ul>

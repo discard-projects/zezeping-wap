@@ -82,10 +82,10 @@ export default {
       resolve(require('./Checkbox/src/Checkbox.vue'))
     })
     // img-box
+    // Vue.component('WapImgBox', (resolve) => {
+    //   resolve(require('./ImgBox/src/ImgBox.vue'))
+    // })
     Vue.component('WapImgBox', (resolve) => {
-      resolve(require('./ImgBox/src/ImgBox.vue'))
-    })
-    Vue.component('ImgBox', (resolve) => {
       resolve(require('./ImgPreview/src/ImgBox.vue'))
     })
     // dialog
