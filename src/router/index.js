@@ -32,4 +32,13 @@ router.beforeEach((to, from, next) => {
   // if (to.matched.some(record => record.meta.auth)) {
   // }
 })
+
+let beforeGo = Router.prototype.go
+Router.prototype.go = function () {
+  if (window.history.length <= 1) {
+    router.push('/')
+  } else {
+    beforeGo.call(router, arguments)
+  }
+}
 export default router
