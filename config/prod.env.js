@@ -1,7 +1,7 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  AUTH_HOST: '"http://api.zezeping.com"',
-  API_ROOT: '"http://api.zezeping.com"',
-  WEB_HOST: '"http://www.zezeping.com"'
+  AUTH_HOST: '"https://api.zezeping.com"',
+  API_ROOT: '"https://api.zezeping.com"',
+  WEB_HOST: '"https://www.zezeping.com"'
 }
