@@ -34,6 +34,9 @@ export default {
       this.api.getMeProfile().then(res => {
         this.$store.dispatch('setUserInfo', res.data.item)
         this.form = res.data.item
+        if (res.data.item.nickname) {
+          this.$router.push({name: 'Home'})
+        }
       })
     },
     onSubmit () {
