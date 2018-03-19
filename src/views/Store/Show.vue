@@ -20,6 +20,14 @@
     <yd-tab class="more-detail-box" v-if="store">
       <yd-tab-panel label="详情" class="item-box detail-box">
         <ul>
+          <li v-if="store.store_detail.wechat_qrcode.thumb.url">
+            <span class="label">微信二维码</span>
+            <div class="desc">
+              <wap-img-box>
+                <img :src="store.store_detail.wechat_qrcode.thumb.url" :src2="store.store_detail.wechat_qrcode.small.url" style="width: 80px">
+              </wap-img-box>
+            </div>
+          </li>
           <li v-if="store.store_detail.phones.length">
             <span class="label">联系电话</span>
             <div class="desc">{{ store.store_detail.phones.join('，') }}</div>
@@ -36,14 +44,6 @@
             <span class="label">描述</span>
             <div class="desc">
               <pre>{{ store.desc }}</pre>
-            </div>
-          </li>
-          <li v-if="store.store_detail.wechat_qrcode.thumb.url">
-            <span class="label">微信二维码</span>
-            <div class="desc">
-              <wap-img-box>
-                <img :src="store.store_detail.wechat_qrcode.thumb.url" :src2="store.store_detail.wechat_qrcode.small.url" style="width: 80px">
-              </wap-img-box>
             </div>
           </li>
         </ul>
