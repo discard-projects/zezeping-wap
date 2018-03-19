@@ -17,6 +17,5 @@ export default {
     height: 100%;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
-    transform: translate(0, 0);
   }
 </style>

@@ -78,7 +78,6 @@ export default {
       })
     },
     clickButtonGo (category) {
-      console.log('clci')
       if (category.route) {
         this.$router.push(category.route)
       } else {

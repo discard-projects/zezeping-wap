@@ -33,12 +33,11 @@ router.beforeEach((to, from, next) => {
   // }
 })
 
-let beforeGo = Router.prototype.go
-Router.prototype.go = function () {
+Router.prototype.go = function (step = -1) {
   if (window.history.length <= 1) {
     router.push('/')
   } else {
-    beforeGo.call(router, arguments)
+    window.history.go(-1)
   }
 }
 export default router
