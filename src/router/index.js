@@ -15,7 +15,8 @@ let router = new Router({
     // Category Home
     { path: '/categories/:id', name: 'CategoryHome', component: (resolve) => { require(['@/views/Category/Index'], resolve) } },
     // 商圈
-    { path: '/moments', name: 'Moment', component: (resolve) => { require(['@/views/Moment/Index'], resolve) } }
+    { path: '/moments', name: 'Moment', component: (resolve) => { require(['@/views/Moment/Index'], resolve) } },
+    { path: '*', redirect: '/' }
   ]
 })
 
