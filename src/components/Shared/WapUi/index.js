@@ -88,6 +88,10 @@ export default {
     Vue.component('WapImgBox', (resolve) => {
       resolve(require('./ImgPreview/src/ImgBox.vue'))
     })
+    // dropdown
+    Vue.component('WapDropdown', (resolve) => {
+      resolve(require('./Dropdown/src/dropdown.vue'))
+    })
     // dialog
     Vue.use(WapToastBox)
     Vue.prototype.wapUi.WapToastBox = WapToastBox

@@ -7,16 +7,18 @@
         </wap-navbar-back-icon>
       </template>
       {{category && category.name || '分类'}}
+      <template slot="right">
+        <wap-dropdown :options="kindOfSortObjects" :selected="nowSortObject" @updateOption="sortOnSelect" v-if="nowSortObject"></wap-dropdown>
+      </template>
     </wap-navbar>
     <store-search v-model="searchValue" :categoryId="$route.params.id"></store-search>
     <!-- 分类下商家列表 -->
     <div is="wap-scroll-section" :pull-refresh="pullRefresh" :infinite-scroll="infiniteScroll" class="scroll-section">
       <wap-list>
         <wap-list-item class="wap-pointer" v-for="store in tableData.data" :key="store.id" @click.native="$router.push({name: 'storeDetail', params: {id: store.id}})">
-          <template slot="left">
+          <template>
             <store-item :store="store"></store-item>
           </template>
-          <template slot="right"><i class="iconfont icon-front"></i></template>
         </wap-list-item>
       </wap-list>
     </div>
@@ -28,6 +30,7 @@ import StoreSearch from '@/components/Store/Search.vue'
 import StoreItem from '@/components/Store/Item'
 import index from '@/components/Shared/Mixin/index'
 import query from '@/components/Shared/Mixin/query'
+import { mapState } from 'vuex'
 export default {
   mixins: [index, query],
   props: {
@@ -39,7 +42,34 @@ export default {
     return {
       searchValue: '',
       category: null,
-      action: ''
+      action: '',
+      nowSortObject: null
+    }
+  },
+  computed: {
+    ...mapState({
+      loc: state => state.location.loc
+    }),
+    kindOfSortObjects () {
+      return [{
+        name: '智能排序',
+        key: 'intelligent',
+        disabled: this.nowSortObject && this.nowSortObject.key === 'intelligent'
+      }, {
+        name: '人气优先',
+        key: 'popularity',
+        disabled: this.nowSortObject && this.nowSortObject.key === 'popularity'
+      }, {
+        name: '距离优先',
+        key: 'distance',
+        disabled: !this.loc
+      }]
+    }
+  },
+  watch: {
+    nowSortObject () {
+      this.action = 'refresh'
+      this.fetchData()
     }
   },
   methods: {
@@ -50,7 +80,9 @@ export default {
       this.tableData.loading = true
     },
     fetchData () {
-      return this._fetchData(this.api.getCategoryStores(this.$route.params.id, Object.assign({}, this.q)))
+      if (this.nowSortObject) {
+        return this._fetchData(this.api.getCategoryStores(this.$route.params.id, Object.assign({sort_type: this.nowSortObject.key, loc: this.loc}, this.q)))
+      }
     },
     afterFetch (data) {
       this.tableData.loading = false
@@ -85,9 +117,13 @@ export default {
           finished()
         })
       }
+    },
+    sortOnSelect (selectObject) {
+      this.nowSortObject = selectObject
     }
   },
   mounted () {
+    this.nowSortObject = this.kindOfSortObjects[0]
     this.api.getCategory(this.$route.params.id).then(res => {
       this.category = res.data.item
     })
