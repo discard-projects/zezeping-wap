@@ -11,7 +11,7 @@
     <wap-list title="基本信息">
       <wap-list-item style="line-height: 44px">
         <template slot="left">昵称:</template>
-        <wap-input v-model="form.nickname" placeholder="请输入用户名"></wap-input>
+        <wap-input v-model="form.nickname" placeholder="给个昵称吧"></wap-input>
       </wap-list-item>
       <div style="margin: 15px;">
         <wap-button type="primary" style="display: block" @click="onSubmit">提交</wap-button>
@@ -31,17 +31,21 @@ export default {
   },
   methods: {
     getProfile () {
-      this.api.getMeProfile().then(res => {
-        this.$store.dispatch('setUserInfo', res.data.item)
-        this.form = res.data.item
-        if (res.data.item.nickname) {
-          this.$router.push({name: 'Home'})
-        }
+      return new Promise((resolve, reject) => {
+        this.api.getMeProfile().then(res => {
+          this.$store.dispatch('setUserInfo', res.data.item)
+          this.form = res.data.item
+          resolve(res.data)
+        }).catch(err => {
+          reject(err)
+        })
       })
     },
     onSubmit () {
       this.api.putProfile(this.form).then(res => {
-        this.getProfile()
+        this.getProfile().then(() => {
+          this.$router.push({name: 'Home'})
+        })
       })
     }
   },
