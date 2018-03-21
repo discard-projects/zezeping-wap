@@ -34,11 +34,4 @@ router.beforeEach((to, from, next) => {
   // }
 })
 
-Router.prototype.go = function (step = -1) {
-  if (window.history.length <= 1) {
-    router.push('/')
-  } else {
-    window.history.go(-1)
-  }
-}
 export default router
