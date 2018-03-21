@@ -6,6 +6,10 @@
           <span style="font-size: 17px">返回</span>
         </wap-navbar-back-icon>
       </template>
+      <template slot="right">
+        <span class="wap-pointer" @click="goNewMoment">发表</span>
+        <NewMoment ref="newMomentRef" @fetchData="pullRefresh"></NewMoment>
+      </template>
       商圈
     </wap-navbar>
     <!-- 分类下商家列表 -->
@@ -23,6 +27,7 @@
 import MomentItem from '@/components/Moment/Item'
 import index from '@/components/Shared/Mixin/index'
 import query from '@/components/Shared/Mixin/query'
+import NewMoment from './parts/NewMoment.vue'
 export default {
   mixins: [index, query],
   methods: {
@@ -68,10 +73,16 @@ export default {
           finished()
         })
       }
+    },
+    goNewMoment () {
+      if (this.validOwnStore()) {
+        this.$refs['newMomentRef'].showPop = true
+      }
     }
   },
   components: {
-    MomentItem
+    MomentItem,
+    NewMoment
   }
 }
 </script>

@@ -40,13 +40,14 @@ export default {
   methods: {
     selectedFile (files) {
       if (files && files.length) {
+        let that = this
         new ImageCompressor(files[0], {
           quality: 0.6,
           success (result) {
             const formData = new FormData()
             formData.append('file', result, result.name)
-            this.api.postAttachmentImage(formData).then(res => {
-              this.selectValue = [...this.attachmentImages, res.data.item]
+            that.api.postAttachmentImage(formData).then(res => {
+              that.selectValue = [...that.attachmentImages, res.data.item]
             })
           },
           error (e) {
