@@ -190,7 +190,7 @@ export default {
     onScroll (event) {
       let el = event.target
       this.topInfo.scrollTop = el.scrollTop
-      if (!this.topInfo.isPullRefreshFetching && this.infiniteScroll && !this.bottomInfo.isScrollBottomFetching && !this.bottomInfo.isScrollBottomFetchingFinished && el.scrollHeight - el.clientHeight - el.scrollTop <= this.infiniteScrollDistance) {
+      if (el.scrollTop >= 10 && !this.topInfo.isPullRefreshFetching && this.infiniteScroll && !this.bottomInfo.isScrollBottomFetching && !this.bottomInfo.isScrollBottomFetchingFinished && el.scrollHeight - el.clientHeight - el.scrollTop <= this.infiniteScrollDistance) {
         this.bottomInfo.isScrollBottomFetching = true
         this.infiniteScroll((allFetched) => {
           this.bottomInfo.isScrollBottomFetching = false

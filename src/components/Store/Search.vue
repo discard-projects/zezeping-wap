@@ -44,7 +44,7 @@ export default {
       },
       set (nv) {
         this.$emit('input', nv)
-        this.reInit()
+        this.reInitData()
         this.q = {page: 1, per_page: 10}
         this.$refs['scrollSectionRef'].reset()
         this.fetchData(nv)

@@ -5,7 +5,6 @@ export default {
       tableData: {
         data: [],
         dataIntros: [],
-        opIntro: null,
         loading: false
       },
       data: null
@@ -23,12 +22,11 @@ export default {
     items () { return this.tableData.data }
   },
   methods: {
-    reInit () {
+    reInitData () {
       this.paginateMeta = {}
       this.tableData = {
         data: [],
         dataIntros: [],
-        opIntro: null,
         loading: false
       }
       this.data = null

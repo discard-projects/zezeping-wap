@@ -7,13 +7,13 @@ export default {
   watch: {
     '$route': {
       handler () {
-        this.fillData()
+        this.initQ()
       },
       immediate: true
     }
   },
   methods: {
-    fillData () {
+    initQ () {
       let q = {
         page: 1,
         per_page: this.q.per_page || 25

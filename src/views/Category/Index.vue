@@ -75,12 +75,15 @@ export default {
   methods: {
     beforeFetch () {
       if (this.action !== 'more') {
-        this.tableData.data = []
+        this.reInitData()
       }
       this.tableData.loading = true
     },
     fetchData () {
       if (this.nowSortObject) {
+        if (this.action === 'refresh') {
+          this.initQ()
+        }
         return this._fetchData(this.api.getCategoryStores(this.$route.params.id, Object.assign({sort_type: this.nowSortObject.key, loc: this.loc}, this.q)))
       }
     },
