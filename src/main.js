@@ -27,7 +27,6 @@ new Vue({
 })
 
 Vue.prototype.validLogin = () => {
-  console.log(store)
   if (store.state.user.authInfo) {
     return store.state.user.authInfo
   } else {
@@ -36,7 +35,7 @@ Vue.prototype.validLogin = () => {
 }
 
 Vue.prototype.validOwnStore = () => {
-  if (Vue.prototype.validLogin) {
+  if (Vue.prototype.validLogin()) {
     if (store.state.user.authInfo.store_id) {
       return store.state.user.authInfo.store_id
     } else {
