@@ -52,12 +52,14 @@ export default {
       if (this.showCancelBtn) {
         buttons.push({
           text: this.cancelBtnText,
+          key: 'cancel',
           class: {'btn-cancel': true}
         })
       }
       if (this.showConfirmBtn) {
         buttons.push({
           text: this.confirmBtnText,
+          key: 'confirm',
           class: {'btn-confirm': true}
         })
       }

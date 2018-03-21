@@ -30,7 +30,9 @@
           </li>
           <li v-if="store.store_detail.phones.length">
             <span class="label">联系电话</span>
-            <div class="desc">{{ store.store_detail.phones.join('，') }}</div>
+            <div class="desc">
+              <span class="phone" v-for="(phone, index) in store.store_detail.phones" :key="index" @click="callPhone(phone)">{{phone}}</span>
+            </div>
           </li>
           <li v-if="store.open_time_desc">
             <span class="label">营业时间</span>
@@ -87,6 +89,19 @@ export default {
       if (this.validLogin()) {
         this.$refs['newCommentRef'].showPop = true
       }
+    },
+    callPhone (phone) {
+      console.log(phone)
+      this.wapUi.WapMessageBox.new({
+        title: '拨打电话',
+        message: `联系我时，请告诉我是在【仄仄平】上看到的`,
+        showCancelBtn: true,
+        callback: (btn) => {
+          if (btn.key === 'confirm') {
+            window.open(`wtai://wp/mc;:${phone}`)
+          }
+        }
+      })
     }
   },
   mounted () {
@@ -113,6 +128,11 @@ export default {
       }
       .desc {
         font-size: 14px;
+
+        .phone {
+          padding-right: 10px;
+          @include tap
+        }
       }
     }
     .detail-box {
