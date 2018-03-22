@@ -94,13 +94,17 @@ export default {
       console.log(phone)
       this.wapUi.WapMessageBox.new({
         title: '拨打电话',
-        message: `联系我时，请告诉我是在【仄仄平】上看到的`,
+        message: `联系时，请告诉我是在【仄仄平】上看到的`,
         showCancelBtn: true,
-        callback: (btn) => {
-          if (btn.key === 'confirm') {
-            window.open(`wtai://wp/mc;:${phone}`)
-          }
-        }
+        buttons: [{
+          text: '取消',
+          key: 'cancel',
+          class: {'btn-cancel': true}
+        }, {
+          text: `<a href="tel:${phone}" style="display: block;">拨打</a>`,
+          key: 'confirm',
+          class: {'btn-confirm': true}
+        }]
       })
     }
   },
