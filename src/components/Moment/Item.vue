@@ -9,6 +9,7 @@
           <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in moment.attachment_images" :key="index" :class="{[`img-count-${moment.attachment_images.length}`]: true}" class="preview att-img">
         </wap-img-box>
       </div>
+      <p class="time_humane">{{moment.created_time_humane}}</p>
     </div>
   </div>
 </template>
@@ -70,6 +71,11 @@ export default {
           max-height: 60px;
         }
       }
+    }
+
+    .time_humane {
+      font-size: 13px;
+      color: #999;
     }
   }
 }

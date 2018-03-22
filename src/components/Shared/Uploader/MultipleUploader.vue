@@ -3,7 +3,7 @@
     <li v-for="(item,index) in attachmentImages" :key="index">
       <img :src="item.file.thumb.url" class="thumb" alt="">
     </li>
-    <li>
+    <li v-if="attachmentImages && attachmentImages.length < 9">
       <label for="input" class="select-img-box">
         <input id="input" class="file-input" type="file" @change="selectedFile($event.target.files)">
         <i class="iconfont icon-add"></i>
@@ -24,6 +24,10 @@ export default {
     attachmentImages: {
       type: Array,
       require: true
+    },
+    max: {
+      type: [String, Number],
+      default: 9
     }
   },
   computed: {

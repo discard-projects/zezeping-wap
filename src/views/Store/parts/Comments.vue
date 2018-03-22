@@ -1,5 +1,5 @@
 <template>
-  <wap-list noTitle v-if="store">
+  <wap-list v-if="store">
     <wap-list-item v-for="comment in comments" :key="comment.id">
       <template slot="left">
         <comment-item :comment="comment"></comment-item>

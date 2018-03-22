@@ -36,8 +36,8 @@ Vue.prototype.validLogin = () => {
 
 Vue.prototype.validOwnStore = () => {
   if (Vue.prototype.validLogin()) {
-    if (store.state.user.authInfo.store_id) {
-      return store.state.user.authInfo.store_id
+    if (store.state.user.userInfo.store_id) {
+      return store.state.user.userInfo.store_id
     } else {
       Vue.prototype.wapUi.WapToastBox.new({message: '请先绑定店铺', timeout: 3000})
     }

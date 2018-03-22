@@ -8,7 +8,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    this.api.getMeProfile().then(res => {
+      this.$store.dispatch('setUserInfo', res.data.item)
+    })
+  }
 }
 </script>
 

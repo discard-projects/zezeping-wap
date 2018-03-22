@@ -7,7 +7,7 @@
         <li class="username">{{comment.user.nickname || comment.user.name}}</li>
         <li class="clearfix"><wap-rank class="fl" :score="comment.rank"></wap-rank></li>
         <li class="content">{{comment.content}}</li>
-        <li class="attachments-box">
+        <li class="attachments-box" v-if="comment.attachment_images.length">
           <wap-img-box>
             <img :src="attachmentImage.file_thumb.url" :src2="attachmentImage.file_small.url" v-for="(attachmentImage,index) in comment.attachment_images" :key="index" class="preview att-img">
           </wap-img-box>

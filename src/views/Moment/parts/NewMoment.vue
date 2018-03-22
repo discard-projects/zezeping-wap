@@ -1,9 +1,15 @@
 <template>
-  <wap-popup v-model="showPop" from="bottom" page>
-    <wap-list>
-      <template slot="title">
-        <span style="line-height: 22px">发表商圈</span>
+  <wap-popup v-model="showPop" from="bottom" page class="wap-navbar-exist">
+    <wap-navbar>
+      <template slot="left">
+        <span class="wap-pointer" @click="showPop = false">取消</span>
       </template>
+      <template slot="right">
+        <span class="wap-pointer" @click="handlerCreate" style="color: #009688">提交内容</span>
+      </template>
+      发表
+    </wap-navbar>
+    <wap-list>
       <wap-list-item>
         <wap-textarea v-model="form.content" placeholder="说点什么..." maxlength="100" show-counter style="height: 90px;"></wap-textarea>
       </wap-list-item>
@@ -12,12 +18,6 @@
           <multiple-uploader v-model="form.attachment_image_ids" :attachment-images.sync="form.attachment_images"></multiple-uploader>
         </template>
       </wap-list-item>
-      <div style="margin: 15px;">
-        <wap-button type="primary" size="large" style="display: block" @click="handlerCreate">提交</wap-button>
-      </div>
-      <div style="margin: 15px;">
-        <wap-button @click="showPop = false" size="large" style="display: block">关闭</wap-button>
-      </div>
     </wap-list>
   </wap-popup>
 </template>
