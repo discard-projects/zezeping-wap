@@ -56,7 +56,7 @@
         </ul>
       </yd-tab-panel>
       <yd-tab-panel label="地图" v-if="store && store.position">
-        <Map :position="store.position" style="height: 400px"></Map>
+        <Map :position="store.position" style="height: 320px"></Map>
       </yd-tab-panel>
       <yd-tab-panel :label="`评论(${store.comments_count})`" v-if="store.comments_count">
         <!--评论-->

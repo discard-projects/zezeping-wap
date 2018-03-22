@@ -54,21 +54,20 @@ export default {
     pullRefresh (finished) {
       this.action = 'refresh'
       this.fetchData().then(res => {
-        finished && finished()
+        finished && finished(this.allFetched)
       }).catch(() => {
-        finished && finished()
+        finished && finished(this.allFetched)
       })
     },
     infiniteScroll (finished) {
+      if (this.allFetched) {
+        return finished(true)
+      }
       this.action = 'more'
       if (this.q.page !== this.paginateMeta.total_pages) {
         this.q.page += 1
         this.fetchData().then(res => {
-          if (this.q.page >= this.paginateMeta.total_pages) {
-            finished(true)
-          } else {
-            finished()
-          }
+          finished(this.allFetched)
         }).catch(() => {
           finished()
         })

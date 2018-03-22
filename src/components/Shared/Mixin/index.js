@@ -19,7 +19,10 @@ export default {
     }
   },
   computed: {
-    items () { return this.tableData.data }
+    items () { return this.tableData.data },
+    allFetched () {
+      return this.paginateMeta.current_page === this.paginateMeta.total_pages
+    }
   },
   methods: {
     reInitData () {
