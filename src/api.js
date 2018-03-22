@@ -95,7 +95,7 @@ var api = {
   getCategory: (id) => cusAxios.get(`v1/categories/${id}`),
   // moments
   getMoments: (params) => cusAxios.get(`v1/moments`, { params }),
-  getStoreMomments: (storeId, params = {}) => cusAxios.get(`v1/moments`, {params: Object.assign(params, {q_store_id: storeId})}),
+  getStoreMomments: (storeId, params = {}) => cusAxios.get(`v1/moments`, {params: Object.assign(params, {q_store_id_eq: storeId})}),
   postMoment: (data) => cusAxios.post(`v1/moments`, data)
 }
 api.install = function (Vue, options) {

@@ -48,12 +48,12 @@
               <pre>{{ store.desc }}</pre>
             </div>
           </li>
+          <li class="item-box images-box" v-if="store.attachment_images.length">
+            <wap-img-box style="width: 100%">
+              <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in store.attachment_images" :key="index">
+            </wap-img-box>
+          </li>
         </ul>
-      </yd-tab-panel>
-      <yd-tab-panel :label="`图片(${store.attachment_images.length})`" class="item-box images-box" v-if="store.attachment_images.length">
-        <wap-img-box style="width: 100%">
-          <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in store.attachment_images" :key="index">
-        </wap-img-box>
       </yd-tab-panel>
       <yd-tab-panel label="地图" v-if="store && store.position">
         <Map :position="store.position" style="height: 400px"></Map>
@@ -153,9 +153,10 @@ export default {
     }
 
     .images-box {
+      padding-left: 0;
       img {
         width: 30%;
-        padding: 10px;
+        padding-right: 15px;
       }
     }
   }
