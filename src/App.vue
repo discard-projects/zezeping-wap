@@ -10,9 +10,11 @@
 export default {
   name: 'App',
   mounted () {
-    this.api.getMeProfile().then(res => {
-      this.$store.dispatch('setUserInfo', res.data.item)
-    })
+    if (this.$store.state.user.authInfo) {
+      this.api.getMeProfile().then(res => {
+        this.$store.dispatch('setUserInfo', res.data.item)
+      })
+    }
   }
 }
 </script>
