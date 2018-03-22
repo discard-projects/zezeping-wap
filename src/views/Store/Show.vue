@@ -62,6 +62,10 @@
         <!--评论-->
         <comments :store="store"></comments>
       </yd-tab-panel>
+      <yd-tab-panel :label="`商圈(${store.moments_count})`" v-if="store.moments_count">
+        <!--商圈-->
+        <moments :store="store"></moments>
+      </yd-tab-panel>
     </yd-tab>
   </div>
 </template>
@@ -71,6 +75,7 @@ import Map from '@/components/Shared/Base/Map.vue'
 import StoreItem from '@/components/Store/Item'
 import {Tab, TabPanel} from 'vue-ydui/dist/lib.px/tab'
 import Comments from './parts/Comments.vue'
+import Moments from './parts/Moments.vue'
 import NewComment from './parts/NewComment.vue'
 export default {
   data () {
@@ -114,6 +119,7 @@ export default {
   components: {
     StoreItem,
     Comments,
+    Moments,
     NewComment,
     Map,
     [Tab.name]: Tab,

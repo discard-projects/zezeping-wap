@@ -71,5 +71,9 @@ export default {
   font-size: 12px;
   line-height: 20px;
   color: #999;
+
+  span {
+    padding: 0 2px;
+  }
 }
 </style>
