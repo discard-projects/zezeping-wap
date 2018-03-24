@@ -88,6 +88,7 @@ var api = {
   getCategoryStores: (categoryId, params) => cusAxios.get(`v1/categories/${categoryId}/stores`, { params }),
   getStores: (params) => cusAxios.get(`v1/stores`, { params }),
   getStore: (id) => cusAxios.get(`v1/stores/${id}`),
+  getStoreDetail: (id) => cusAxios.get(`v1/stores/${id}/detail`),
   getStoreComments: (storeId) => cusAxios.get(`v1/stores/${storeId}/comments`),
   postStoreComment: (storeId, data) => cusAxios.post(`v1/stores/${storeId}/comments`, data),
   postAttachmentImage: (data) => cusAxios.post('v1/attachment_images', data, {headers: { 'Content-Type': 'multipart/form-data' }}),

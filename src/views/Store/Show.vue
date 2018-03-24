@@ -1,5 +1,5 @@
 <template>
-  <div class="wap-navbar-exist">
+  <div class="full-page wap-navbar-exist">
     <wap-navbar>
       <template slot="left">
         <wap-navbar-back-icon @click.native="$router.go(-1)">
@@ -64,6 +64,9 @@
           <Map :position="store.position" style="height: 320px"></Map>
         </div>
       </yd-tab-panel>
+      <yd-tab-panel :label="`产品(${store.products_count})`" v-if="store.products_count">
+        <store-products :store="store"></store-products>
+      </yd-tab-panel>
       <yd-tab-panel :label="`评论(${store.comments_count})`" v-if="store.comments_count">
         <!--评论-->
         <comments :store="store"></comments>
@@ -83,6 +86,7 @@ import {Tab, TabPanel} from 'vue-ydui/dist/lib.px/tab'
 import Comments from './parts/Comments.vue'
 import Moments from './parts/Moments.vue'
 import NewComment from './parts/NewComment.vue'
+import StoreProducts from '@/components/Store/Products'
 export default {
   data () {
     return {
@@ -139,12 +143,16 @@ export default {
     NewComment,
     Map,
     [Tab.name]: Tab,
-    [TabPanel.name]: TabPanel
+    [TabPanel.name]: TabPanel,
+    StoreProducts
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  .full-page {
+    height: 100%;
+  }
   .more-detail-box {
     .item-box {
       padding: 5px 10px;
