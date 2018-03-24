@@ -20,7 +20,7 @@
     <yd-tab class="more-detail-box" v-if="store">
       <yd-tab-panel label="详情" class="item-box detail-box">
         <wap-list>
-          <wap-list-item v-if="store.store_detail.wechat_qrcode.thumb.url">
+          <wap-list-item v-if="store.store_detail.wechat_qrcode.thumb.url" style="line-height: 0;">
             <template slot="left">微信二维码</template>
             <wap-img-box style="line-height: 0">
               <img :src="store.store_detail.wechat_qrcode.thumb.url" :src2="store.store_detail.wechat_qrcode.small.url" style="width: 40px;">
