@@ -5,15 +5,15 @@
         <wap-list style="background: #f6f6f6; padding: 5px 0">
           <wap-list-item v-for="(product, index) in proCate.products" :key="index" v-if="proCate.products.length">
             <template slot="left">
-              <div class="product-item-box">
-                <wap-img-box style="line-height: 0">
+              <div class="product-item-left-box">
+                <wap-img-box style="line-height: 0" v-if="product.image.thumb.url">
                   <img :src="product.image.thumb.url" :src2="product.image.small.url">
                 </wap-img-box>
                 {{product.name}}
               </div>
             </template>
             <template slot="right">
-              ₱{{product.price}}
+              <span v-if="product.price">₱{{product.price}}</span>
             </template>
           </wap-list-item>
         </wap-list>
@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .product-item-box {
+  .product-item-left-box {
     display: flex;
     align-items: center;
 
