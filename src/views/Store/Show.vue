@@ -19,44 +19,50 @@
     <!--info detail-->
     <yd-tab class="more-detail-box" v-if="store">
       <yd-tab-panel label="详情" class="item-box detail-box">
-        <ul>
-          <li v-if="store.store_detail.wechat_qrcode.thumb.url">
-            <span class="label">微信二维码</span>
-            <div class="desc">
-              <wap-img-box>
-                <img :src="store.store_detail.wechat_qrcode.thumb.url" :src2="store.store_detail.wechat_qrcode.small.url" style="width: 80px">
-              </wap-img-box>
-            </div>
-          </li>
-          <li v-if="store.store_detail.phones.length">
-            <span class="label">联系电话</span>
-            <div class="desc">
-              <span class="phone" v-for="(phone, index) in store.store_detail.phones" :key="index" @click="callPhone(phone)">{{phone}}</span>
-            </div>
-          </li>
-          <li v-if="store.open_time_desc">
-            <span class="label">营业时间</span>
-            <div class="desc">{{ store.open_time_desc }}</div>
-          </li>
-          <li v-if="store.address">
-            <span class="label">地址</span>
-            <div class="desc">{{ store.address }}</div>
-          </li>
-          <li v-if="store.desc">
-            <span class="label">描述</span>
-            <div class="desc">
-              <pre>{{ store.desc }}</pre>
-            </div>
-          </li>
-          <li class="item-box images-box" v-if="store.attachment_images.length">
-            <wap-img-box style="width: 100%">
-              <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in store.attachment_images" :key="index">
+        <wap-list>
+          <wap-list-item v-if="store.store_detail.wechat_qrcode.thumb.url">
+            <template slot="left">微信二维码</template>
+            <wap-img-box style="line-height: 0">
+              <img :src="store.store_detail.wechat_qrcode.thumb.url" :src2="store.store_detail.wechat_qrcode.small.url" style="width: 40px;">
             </wap-img-box>
-          </li>
-        </ul>
-      </yd-tab-panel>
-      <yd-tab-panel label="地图" v-if="store && store.position">
-        <Map :position="store.position" style="height: 320px"></Map>
+            <template slot="right"><i class="iconfont icon-front"></i></template>
+          </wap-list-item>
+          <wap-list-item v-if="store.store_detail.phones.length" @click.native="callPhone(store.store_detail.phones)">
+            <template slot="left">联系电话</template>
+            <span class="phone" v-for="(phone, index) in store.store_detail.phones" :key="index">{{phone}}</span>
+            <template slot="right"><i class="iconfont icon-front"></i></template>
+          </wap-list-item>
+          <wap-list-item v-if="store.open_time_des">
+            <template slot="left">营业时间</template>
+            <template slot="right">{{ store.open_time_desc }}</template>
+          </wap-list-item>
+          <wap-list-item v-if="store.address" class="address-box" @clicl="$refs['mapPopRef'].showPop = true">
+            <template slot="left">
+              <div class="fl" style="width: 40px;">地址</div>
+              <p style="overflow: auto">
+                <span>{{ store.address }}</span>
+              </p>
+            </template>
+          </wap-list-item>
+          <wap-list-item v-if="store.desc">
+            <template slot="left">
+              <div style="padding: 5px 0; line-height: 20px">
+                <span>描述</span>
+                <div style="color: #999">
+                  <pre>{{ store.desc }}</pre>
+                </div>
+              </div>
+            </template>
+          </wap-list-item>
+        </wap-list>
+        <div class="item-box images-box" v-if="store.attachment_images.length" style="line-height: 0">
+          <wap-img-box style="width: 100%">
+            <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in store.attachment_images" :key="index">
+          </wap-img-box>
+        </div>
+        <div v-if="store && store.position">
+          <Map :position="store.position" style="height: 320px"></Map>
+        </div>
       </yd-tab-panel>
       <yd-tab-panel :label="`评论(${store.comments_count})`" v-if="store.comments_count">
         <!--评论-->
@@ -95,21 +101,31 @@ export default {
         this.$refs['newCommentRef'].showPop = true
       }
     },
-    callPhone (phone) {
-      console.log(phone)
-      this.wapUi.WapMessageBox.new({
-        title: '拨打电话',
-        message: `联系时，请告诉我是在【仄仄平】上看到的`,
-        showCancelBtn: true,
-        buttons: [{
-          text: '取消',
-          key: 'cancel',
-          class: {'btn-cancel': true}
-        }, {
-          text: `<a href="tel:${phone}" style="display: block;">拨打</a>`,
-          key: 'confirm',
-          class: {'btn-confirm': true}
-        }]
+    callPhone (phones) {
+      console.log(phones)
+      this.wapUi.WapActionSheet.new({
+        items: phones.map(phone => {
+          return {text: phone}
+        }),
+        callback: (item) => {
+          console.log(item)
+          if (item) {
+            this.wapUi.WapMessageBox.new({
+              title: '拨打电话',
+              message: `联系时，请告诉我是在【仄仄平】上看到的`,
+              showCancelBtn: true,
+              buttons: [{
+                text: '取消',
+                key: 'cancel',
+                class: {'btn-cancel': true}
+              }, {
+                text: `<a href="tel:${item.text}" style="display: block;">拨打</a>`,
+                key: 'confirm',
+                class: {'btn-confirm': true}
+              }]
+            })
+          }
+        }
       })
     }
   },
@@ -136,13 +152,9 @@ export default {
         color: #666;
         line-height: 24px;
       }
-      .desc {
-        font-size: 14px;
-
-        .phone {
-          padding-right: 10px;
-          @include tap
-        }
+      .phone {
+        padding-left: 10px;
+        @include tap
       }
     }
     .detail-box {
@@ -152,8 +164,21 @@ export default {
       }
     }
 
+    .address-box {
+      line-height: 24px;
+      padding: 10px 0;
+      p {
+        color: #666;
+        line-height: 20px;
+        &.enabled {
+          color: inherit;
+        }
+      }
+    }
+
     .images-box {
       padding-left: 0;
+      margin: 15px 0;
       img {
         width: 30%;
         padding-right: 15px;

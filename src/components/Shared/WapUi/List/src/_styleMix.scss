@@ -34,11 +34,7 @@
 @mixin wap-list-item {
   .wap-list-item {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-left: pxRem(12);
-    padding-right: pxRem(12);
     line-height: pxRem(44);
     &:not(:last-child):after {
       content: '';
@@ -48,25 +44,35 @@
       transform: scaleY(.5);
       border-bottom: 1px solid #d9d9d9;
     }
-    .left, .right, .content {
-      display: inline-block;
-      font-size: pxRem(16);
-    }
-    .left {
-      padding-right: pxRem(5);
-      &:empty {
-        padding-right: 0;
-      }
-    }
-    .content {
-      flex: 1;
-      text-align: right;
-      font-size: pxRem(14);
-    }
-    .right {
-      color: #c9c9c9;
+    .main-wap-list-item {
       display: flex;
+      justify-content: space-between;
       align-items: center;
+      overflow: hidden;
+
+      .left, .right, .content {
+        display: inline-block;
+        font-size: pxRem(16);
+      }
+      .left {
+        padding-right: pxRem(5);
+        &:empty {
+          padding-right: 0;
+        }
+      }
+      .content {
+        flex: 1;
+        text-align: right;
+        font-size: pxRem(14);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .right {
+        color: #c9c9c9;
+        display: flex;
+        align-items: center;
+      }
     }
   }
 }
