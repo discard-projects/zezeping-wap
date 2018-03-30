@@ -50,7 +50,7 @@
             <template slot="left">
               <span class="fl" style="width: 40px; color: #333">描述</span>
               <div style="overflow: auto">
-                <pre style="padding: 4px 0;">{{ store.desc }}</pre>
+                <pre style="padding: 3px 0;">{{ store.desc }}</pre>
               </div>
             </template>
           </wap-list-item>
