@@ -4,7 +4,7 @@
       <img :src="item.file.thumb.url" class="thumb" alt="">
     </li>
     <li v-if="attachmentImages && attachmentImages.length < 9">
-      <label for="input" class="select-img-box">
+      <label for="input" class="select-img-box fl">
         <input id="input" class="file-input" type="file" @change="selectedFile($event.target.files)">
         <i class="iconfont icon-add"></i>
       </label>
