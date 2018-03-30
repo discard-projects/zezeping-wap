@@ -18,7 +18,7 @@
       <wap-swiper :interval="0" :loop="false" v-if="home">
         <wap-swiper-item class="buttons-box" v-for="(categories,index) in calCategoryGroups" :key="index">
           <ul class="buttons-wrap">
-            <li v-for="category in categories" :key="category.id" style="flex: 1; text-align: center" @click="clickButtonGo(category)">
+            <li v-for="category in categories" :key="category.id" @click="clickButtonGo(category)">
               <div class="button-item">
                 <img :src="category.logo_thumb.url" style="max-width: 100%">
                 <p>{{category.name}}</p>
@@ -69,7 +69,7 @@ export default {
         name: '问答'
       }]
       if (this.home && this.home.categories.length) {
-        return data.concat(this.home.categories).chunk(4)
+        return data.concat(this.home.categories).chunk(8)
       }
       return data
     }
@@ -108,24 +108,28 @@ export default {
     padding-bottom: 10px;
 
     .buttons-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      height: 80px;
+      padding: 5px 0;
+      height: 150px;
       line-height: 18px;
       color: #333;
 
-      .button-item {
+      li {
         display: inline-block;
-        height: 40px;
-        width: 100%;
-        text-align: center;
-        font-size: 12px;
-        border-radius: 20px;
+        width: 25%;
+        margin: 6px 0;
 
-        @include tap;
-        img {
-          width: 40px;
+        .button-item {
+          display: inline-block;
+          height: 40px;
+          width: 100%;
+          text-align: center;
+          font-size: 12px;
+          border-radius: 20px;
+
+          @include tap;
+          img {
+            width: 40px;
+          }
         }
       }
     }
