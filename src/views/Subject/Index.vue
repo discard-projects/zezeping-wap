@@ -95,9 +95,10 @@ export default {
       }
     },
     showCreateCommentDialog (subject) {
-      this.$refs['newSubjectDiscussionRef'].showPop = true
-      console.log('show comment subject')
-      this.nowSubjectForDiscussion = subject
+      if (this.validOwnStore()) {
+        this.nowSubjectForDiscussion = subject
+        this.$refs['newSubjectDiscussionRef'].showPop = true
+      }
     }
   },
   components: {
