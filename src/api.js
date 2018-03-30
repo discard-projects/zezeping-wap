@@ -97,7 +97,11 @@ var api = {
   // moments
   getMoments: (params) => cusAxios.get(`v1/moments`, { params }),
   getStoreMomments: (storeId, params = {}) => cusAxios.get(`v1/moments`, {params: Object.assign(params, {q_store_id_eq: storeId})}),
-  postMoment: (data) => cusAxios.post(`v1/moments`, data)
+  postMoment: (data) => cusAxios.post(`v1/moments`, data),
+  // subjects (可探讨的主题)
+  getSubjects: (params) => cusAxios.get(`v1/subjects`, { params }),
+  postSubject: (data) => cusAxios.post(`v1/subjects`, data),
+  postSubjectDiscussions: (subjectId, data) => cusAxios.post(`v1/subjects/${subjectId}/discussions`, data)
 }
 api.install = function (Vue, options) {
   if (options.store) {

@@ -1,5 +1,5 @@
 <template>
-  <wap-popup v-model="showPop" from="bottom" page class="wap-navbar-exist">
+  <wap-popup v-model="showPop" from="right" page class="wap-navbar-exist" v-if="subject">
     <wap-navbar>
       <template slot="left">
         <span class="wap-pointer" @click="showPop = false">取消</span>
@@ -7,16 +7,12 @@
       <template slot="right">
         <span class="wap-pointer" @click="handlerCreate" style="color: #009688">提交内容</span>
       </template>
-      发表
+      我的回答
     </wap-navbar>
+    <p class="question-desc">{{ subject.content }}</p>
     <wap-list>
       <wap-list-item>
-        <wap-textarea v-model="form.content" placeholder="说点什么..." maxlength="150" show-counter style="height: 90px;"></wap-textarea>
-      </wap-list-item>
-      <wap-list-item>
-        <template slot="left">
-          <multiple-uploader v-model="form.attachment_image_ids" :attachment-images.sync="form.attachment_images"></multiple-uploader>
-        </template>
+        <wap-textarea v-model="form.content" placeholder="我来解答..." maxlength="120" show-counter style="height: 90px;"></wap-textarea>
       </wap-list-item>
     </wap-list>
   </wap-popup>
@@ -24,11 +20,10 @@
 
 <script>
 import newMix from '@/components/Shared/Mixin/new'
-import MultipleUploader from '@/components/Shared/Uploader/MultipleUploader.vue'
 export default {
   mixins: [newMix],
   props: {
-    store: {
+    subject: {
       require: true
     }
   },
@@ -42,9 +37,7 @@ export default {
     showPop: {
       handler (nv) {
         this.form = {
-          content: '',
-          attachment_image_ids: [],
-          attachment_images: []
+          content: ''
         }
       },
       immediate: true
@@ -55,13 +48,21 @@ export default {
       if (!this.form.content) {
         return this.wapUi.WapToastBox.new({message: '请输入评论内容', timeout: 2000})
       }
-      this._handlerCreate(this.api.postMoment(this.form)).then(res => {
+      this._handlerCreate(this.api.postSubjectDiscussions(this.subject.id, this.form)).then(res => {
         this.showPop = false
       })
     }
-  },
-  components: {
-    MultipleUploader
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .question-desc {
+    background: #f2f2f2;
+    text-align: left;
+    line-height: 20px;
+    padding: 12px;
+    font-size: 13px;
+    color: #666;
+  }
+</style>

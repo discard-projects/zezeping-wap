@@ -61,6 +61,12 @@ export default {
         },
         route: { name: 'Moment' },
         name: '商圈'
+      }, {
+        logo_thumb: {
+          url: require('../../assets/images/q&a.png')
+        },
+        route: { name: 'Subject' },
+        name: '问答'
       }]
       if (this.home && this.home.categories.length) {
         return data.concat(this.home.categories).chunk(4)

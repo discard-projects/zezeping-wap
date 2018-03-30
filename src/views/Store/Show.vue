@@ -21,7 +21,9 @@
       <yd-tab-panel label="详情" class="item-box detail-box">
         <wap-list>
           <wap-list-item v-if="store.store_detail.wechat_qrcode.thumb.url" style="line-height: 0;">
-            <template slot="left">微信二维码</template>
+            <template slot="left">
+              <span style="line-height: 44px">微信二维码</span>
+            </template>
             <wap-img-box style="line-height: 0">
               <img :src="store.store_detail.wechat_qrcode.thumb.url" :src2="store.store_detail.wechat_qrcode.small.url" style="width: 40px;">
             </wap-img-box>
@@ -38,19 +40,17 @@
           </wap-list-item>
           <wap-list-item v-if="store.address" class="address-box" @clicl="$refs['mapPopRef'].showPop = true">
             <template slot="left">
-              <div class="fl" style="width: 40px;">地址</div>
-              <p style="overflow: auto">
+              <div class="fl" style="width: 40px; color: #333">地址</div>
+              <div style="overflow: auto">
                 <span>{{ store.address }}</span>
-              </p>
+              </div>
             </template>
           </wap-list-item>
-          <wap-list-item v-if="store.desc">
+          <wap-list-item v-if="store.desc" class="address-box">
             <template slot="left">
-              <div style="padding: 5px 0; line-height: 20px">
-                <span>描述</span>
-                <div style="color: #999">
-                  <pre>{{ store.desc }}</pre>
-                </div>
+              <span class="fl" style="width: 40px; color: #333">描述</span>
+              <div style="overflow: auto">
+                <pre>{{ store.desc }}</pre>
               </div>
             </template>
           </wap-list-item>
@@ -175,12 +175,10 @@ export default {
     .address-box {
       line-height: 24px;
       padding: 10px 0;
-      p {
+      color: #333;
+      div {
         color: #666;
         line-height: 20px;
-        &.enabled {
-          color: inherit;
-        }
       }
     }
 

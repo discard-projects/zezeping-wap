@@ -27,11 +27,6 @@ import newMix from '@/components/Shared/Mixin/new'
 import MultipleUploader from '@/components/Shared/Uploader/MultipleUploader.vue'
 export default {
   mixins: [newMix],
-  props: {
-    store: {
-      require: true
-    }
-  },
   data () {
     return {
       showPop: false,
@@ -55,7 +50,7 @@ export default {
       if (!this.form.content) {
         return this.wapUi.WapToastBox.new({message: '请输入评论内容', timeout: 2000})
       }
-      this._handlerCreate(this.api.postMoment(this.form)).then(res => {
+      this._handlerCreate(this.api.postSubject(this.form)).then(res => {
         this.showPop = false
       })
     }

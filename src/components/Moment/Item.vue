@@ -74,6 +74,7 @@ export default {
     }
 
     .time_humane {
+      padding-top: 3px;
       font-size: 13px;
       color: #999;
     }
