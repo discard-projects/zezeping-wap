@@ -56,7 +56,7 @@
           </wap-list-item>
         </wap-list>
         <div class="item-box images-box" v-if="store.attachment_images.length" style="line-height: 0">
-          <wap-img-box style="width: 100%">
+          <wap-img-box class="clearfix" style="width: 100%">
             <img :src="attachmentImage.file_thumb_url" :src2="attachmentImage.file_url" v-for="(attachmentImage,index) in store.attachment_images" :key="index">
           </wap-img-box>
         </div>
@@ -186,8 +186,8 @@ export default {
       padding-left: 0;
       margin: 15px 0;
       img {
-        width: 30%;
-        padding-right: 15px;
+        width: 33%;
+        padding: 0 10px 10px;
       }
     }
   }

@@ -107,6 +107,9 @@ export default {
       })
     },
     infiniteScroll (finished) {
+      if (this.allFetched) {
+        return finished(true)
+      }
       this.action = 'more'
       if (this.q.page !== this.paginateMeta.total_pages) {
         this.q.page += 1
