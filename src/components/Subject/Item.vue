@@ -11,7 +11,7 @@
           </wap-img-box>
         </div>
         <p class="time_humane">{{subject.created_time_humane}}</p>
-        <wap-button size="mini" class="fr" @click.native="$emit('shouldShowCommentDialog', subject)">评论</wap-button>
+        <wap-button size="mini" class="fr" @click.native="$emit('shouldShowCommentDialog', subject)" style="margin-bottom: 5px">评论</wap-button>
       </div>
     </div>
     <div class="operations-box">

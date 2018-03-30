@@ -90,12 +90,12 @@ export default {
       }
     },
     goNewSubject () {
-      if (this.validOwnStore()) {
+      if (this.validLogin()) {
         this.$refs['newSubjectRef'].showPop = true
       }
     },
     showCreateCommentDialog (subject) {
-      if (this.validOwnStore()) {
+      if (this.validLogin()) {
         this.nowSubjectForDiscussion = subject
         this.$refs['newSubjectDiscussionRef'].showPop = true
       }

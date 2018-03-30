@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
 .discussion-item {
-  padding: 10px;
+  padding: 3px 10px;
   padding-left: 0;
   line-height: 22px;
   font-size: 14px;
