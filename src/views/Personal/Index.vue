@@ -8,6 +8,12 @@
         </template>
         <template slot="right"><i class="iconfont icon-front"></i></template>
       </wap-list-item>
+      <wap-list-item style="line-height: 44px" class="wap-pointer" @click.native="googleLogin">
+        <template slot="left">
+          <span>Google登录</span>
+        </template>
+        <template slot="right"><i class="iconfont icon-front"></i></template>
+      </wap-list-item>
     </wap-list>
     <wap-list title="用户名" v-if="userInfo">
       <wap-list-item style="line-height: 44px" class="wap-pointer" @click.native="$router.push({name: 'Profile'})">
@@ -38,6 +44,9 @@ export default {
   methods: {
     facebookLogin () {
       window.location.href = `${process.env.API_ROOT}/auth/facebook?auth_origin_url=${process.env.WEB_HOST}/login`
+    },
+    googleLogin () {
+      window.location.href = `${process.env.API_ROOT}/auth/google_oauth2?auth_origin_url=${process.env.WEB_HOST}/login`
     },
     onLogout () {
       this.api.logout().then(() => {
