@@ -57,7 +57,7 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: #00d1da;
+        // color: #00d1da;
         line-height: 20px;
         // @include tap;
       }
