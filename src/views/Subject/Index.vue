@@ -21,7 +21,7 @@
             <template slot="discussions">
               <ul class="subject-discusstions">
                 <li v-for="(discussion, index) in subject.discussions" :key="index">
-                  <DiscussionItem :discussion="discussion"></DiscussionItem>
+                  <DiscussionItem :discussion="discussion" @approve="approveDiscussion"></DiscussionItem>
                 </li>
               </ul>
             </template>
@@ -99,6 +99,12 @@ export default {
         this.nowSubjectForDiscussion = subject
         this.$refs['newSubjectDiscussionRef'].showPop = true
       }
+    },
+    approveDiscussion (discussion) {
+      this.api.putToggleSubjectDiscussionApprove(discussion.subject_id, discussion.id).then(res => {
+        discussion.is_approved = res.data.is_approved
+        discussion.votes_count = res.data.votes_count
+      })
     }
   },
   components: {
@@ -122,7 +128,7 @@ export default {
     }
 
     .subject-discusstions {
-      padding-left: 30px;
+      padding-left: 20px;
     }
   }
 </style>

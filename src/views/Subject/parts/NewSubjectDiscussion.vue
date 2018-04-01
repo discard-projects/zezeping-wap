@@ -12,7 +12,7 @@
     <p class="question-desc">{{ subject.content }}</p>
     <wap-list>
       <wap-list-item>
-        <wap-textarea v-model="form.content" placeholder="我来解答..." maxlength="120" show-counter style="height: 90px;"></wap-textarea>
+        <wap-textarea v-model="form.content" placeholder="我来解答..." maxlength="150" show-counter style="height: 150px;"></wap-textarea>
       </wap-list-item>
     </wap-list>
   </wap-popup>

@@ -101,7 +101,8 @@ var api = {
   // subjects (可探讨的主题)
   getSubjects: (params) => cusAxios.get(`v1/subjects`, { params }),
   postSubject: (data) => cusAxios.post(`v1/subjects`, data),
-  postSubjectDiscussions: (subjectId, data) => cusAxios.post(`v1/subjects/${subjectId}/discussions`, data)
+  postSubjectDiscussions: (subjectId, data) => cusAxios.post(`v1/subjects/${subjectId}/discussions`, data),
+  putToggleSubjectDiscussionApprove: (subjectId, discussionId) => cusAxios.put(`v1/subjects/${subjectId}/discussions/${discussionId}/toggle_approve`)
 }
 api.install = function (Vue, options) {
   if (options.store) {
