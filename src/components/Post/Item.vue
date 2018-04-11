@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="line-height: 20px; padding: 6px 0">
     <span class="category">{{item.category_name}}</span>
     <span class="title">{{item.title}}</span>
   </div>

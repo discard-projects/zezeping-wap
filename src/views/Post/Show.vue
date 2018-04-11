@@ -55,25 +55,33 @@ export default {
       })
     },
     toggleCollection () {
-      this.api.putTogglePostCollect(this.post.id).then(res => {
-        this.post = Object.assign(this.post, res.data)
-      })
+      if (this.validLogin()) {
+        this.api.putTogglePostCollect(this.post.id).then(res => {
+          this.post = Object.assign(this.post, res.data)
+        })
+      }
     },
     toggleVote () {
-      this.api.putTogglePostApprove(this.post.id).then(res => {
-        this.post = Object.assign(this.post, res.data)
-      })
+      if (this.validLogin()) {
+        this.api.putTogglePostApprove(this.post.id).then(res => {
+          this.post = Object.assign(this.post, res.data)
+        })
+      }
     },
     toggleDiscussionVote (discussion) {
-      this.api.putTogglePostDiscussionApprove(discussion.discussable_id, discussion.id).then(res => {
-        Object.assign(discussion, res.data)
-      })
+      if (this.validLogin()) {
+        this.api.putTogglePostDiscussionApprove(discussion.discussable_id, discussion.id).then(res => {
+          Object.assign(discussion, res.data)
+        })
+      }
     },
     createDiscussion () {
-      this.api.postPostDiscussions(this.$route.params.id, this.discussionForm).then(res => {
-        this.discussionForm.content = ''
-        this.getPostInfo()
-      })
+      if (this.validLogin()) {
+        this.api.postPostDiscussions(this.$route.params.id, this.discussionForm).then(res => {
+          this.discussionForm.content = ''
+          this.getPostInfo()
+        })
+      }
     }
   },
   mounted () {
