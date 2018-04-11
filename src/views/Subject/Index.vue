@@ -101,10 +101,12 @@ export default {
       }
     },
     approveDiscussion (discussion) {
-      this.api.putToggleSubjectDiscussionApprove(discussion.subject_id, discussion.id).then(res => {
-        discussion.is_approved = res.data.is_approved
-        discussion.votes_count = res.data.votes_count
-      })
+      if (this.validLogin()) {
+        this.api.putToggleSubjectDiscussionApprove(discussion.subject_id, discussion.id).then(res => {
+          discussion.is_approved = res.data.is_approved
+          discussion.votes_count = res.data.votes_count
+        })
+      }
     }
   },
   components: {
