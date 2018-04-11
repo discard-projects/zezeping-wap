@@ -102,7 +102,15 @@ var api = {
   getSubjects: (params) => cusAxios.get(`v1/subjects`, { params }),
   postSubject: (data) => cusAxios.post(`v1/subjects`, data),
   postSubjectDiscussions: (subjectId, data) => cusAxios.post(`v1/subjects/${subjectId}/discussions`, data),
-  putToggleSubjectDiscussionApprove: (subjectId, discussionId) => cusAxios.put(`v1/subjects/${subjectId}/discussions/${discussionId}/toggle_approve`)
+  putToggleSubjectDiscussionApprove: (subjectId, discussionId) => cusAxios.put(`v1/subjects/${subjectId}/discussions/${discussionId}/toggle_approve`),
+  // Post
+  getPosts: (params) => cusAxios.get('v1/posts', { params }),
+  getPost: (postId, params) => cusAxios.get(`v1/posts/${postId}`, { params }),
+  getPostCategoryOptions: () => cusAxios.get('v1/categories/index_tree', {params: {q_category_eq: 'category_post'}}),
+  postPostDiscussions: (postId, data) => cusAxios.post(`v1/posts/${postId}/discussions`, data),
+  putTogglePostApprove: (postId) => cusAxios.put(`v1/posts/${postId}/toggle_approve`),
+  putTogglePostCollect: (postId) => cusAxios.put(`v1/posts/${postId}/toggle_collect`),
+  putTogglePostDiscussionApprove: (postId, discussionId) => cusAxios.put(`v1/posts/${postId}/discussions/${discussionId}/toggle_approve`)
 }
 api.install = function (Vue, options) {
   if (options.store) {

@@ -1,6 +1,6 @@
 <template>
   <div class="wap-swiper" :class="{horizontal: direction == 'horizontal', vertical: direction == 'vertical'}">
-    <div class="default-swiper-box" :style="dragStyleObject" ref="boxRef" @touchstart.stop="onTouchStart($event)" @mousedown.stop.prevent="onTouchStart($event)" @touchmove.stop.prevent="onTouchMove($event)" @mousemove.stop.prevent="onTouchMove($event)" @touchend.stop="onTouchEnd($event)" @mouseup.stop.prevent="onTouchEnd($event)" @mouseleave.stop.prevent="onTouchEnd($event)">
+    <div class="default-swiper-box" :style="dragStyleObject" ref="boxRef" @touchstart="onTouchStart($event)" @mousedown.stop.prevent="onTouchStart($event)" @touchmove.prevent="onTouchMove($event)" @mousemove.stop.prevent="onTouchMove($event)" @touchend="onTouchEnd($event)" @mouseup.stop.prevent="onTouchEnd($event)" @mouseleave.stop.prevent="onTouchEnd($event)">
       <slot></slot>
     </div>
     <slot name="pagination">

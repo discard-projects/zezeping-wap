@@ -15,7 +15,7 @@
     <!-- 分类下商家列表 -->
     <div is="wap-scroll-section" :pull-refresh="pullRefresh" :infinite-scroll="infiniteScroll" class="scroll-section">
       <wap-list>
-        <wap-list-item class="wap-pointer" v-for="store in tableData.data" :key="store.id" @click.native="$router.push({name: 'storeDetail', params: {id: store.id}})">
+        <wap-list-item class="wap-pointer" v-for="store in tableData.data" :key="store.id" @click.native="$router.push({name: 'StoreDetail', params: {id: store.id}})">
           <template>
             <store-item :store="store"></store-item>
           </template>

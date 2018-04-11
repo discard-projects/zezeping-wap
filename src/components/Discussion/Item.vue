@@ -1,5 +1,5 @@
 <template>
-  <div class="discussion-item">
+  <div class="discussion-item" v-if="discussion">
     <img :src="discussion.user.image" class="user-avatar fl" v-if="discussion.user.image">
     <avatar :text="discussion.user.id_hash" class="user-avatar fl" v-else></avatar>
     <div class="content">
@@ -46,6 +46,7 @@ export default {
     padding: 5px;
     color: #999;
     overflow: hidden;
+    text-align: left;
 
     .is-approved {
       color: #ff0066;

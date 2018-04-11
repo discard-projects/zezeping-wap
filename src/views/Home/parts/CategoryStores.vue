@@ -1,7 +1,7 @@
 <template>
   <!-- 分类下商家列表 -->
   <wap-list :title="name">
-    <wap-list-item class="wap-pointer" v-for="store in tableData.data" :key="store.id" @click.native="$router.push({name: 'storeDetail', params: {id: store.id}})">
+    <wap-list-item class="wap-pointer" v-for="store in tableData.data" :key="store.id" @click.native="$router.push({name: 'StoreDetail', params: {id: store.id}})">
       <template slot="left">
         <store-item :store="store"></store-item>
       </template>

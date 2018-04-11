@@ -9,11 +9,14 @@ let router = new Router({
   routes: [
     { path: '/', name: 'Home', component: (resolve) => { require(['@/views/Home/Index'], resolve) } },
     { path: '/login', name: 'Login', component: (resolve) => { require(['@/views/Login'], resolve) } },
-    { path: '/stores/:id', name: 'storeDetail', component: (resolve) => { require(['@/views/Store/Show'], resolve) } },
+    { path: '/stores/:id', name: 'StoreDetail', component: (resolve) => { require(['@/views/Store/Show'], resolve) } },
     { path: '/personal', name: 'Personal', component: (resolve) => { require(['@/views/Personal/Index'], resolve) } },
     { path: '/profile', name: 'Profile', component: (resolve) => { require(['@/views/Personal/parts/Profile'], resolve) } },
     // Category Home
     { path: '/categories/:id', name: 'CategoryHome', component: (resolve) => { require(['@/views/Category/Index'], resolve) } },
+    // posts
+    { path: '/posts', name: 'Post', component: (resolve) => { require(['@/views/Post/Index'], resolve) } },
+    { path: '/posts/:id', name: 'PostShow', component: (resolve) => { require(['@/views/Post/Show'], resolve) } },
     // 商圈
     { path: '/moments', name: 'Moment', component: (resolve) => { require(['@/views/Moment/Index'], resolve) } },
     { path: '/subjects', name: 'Subject', component: (resolve) => { require(['@/views/Subject/Index'], resolve) } },

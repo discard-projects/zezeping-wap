@@ -2,7 +2,7 @@
   <div class="moment-item clearfix" v-if="moment">
     <img :src="moment.store.logo_thumb.url" class="logo fl">
     <div class="content-box">
-      <h4 class="store-name" @click="$router.push({name: 'storeDetail', params: {id: moment.store.id}})">{{ moment.store.name }}</h4>
+      <h4 class="store-name" @click="$router.push({name: 'StoreDetail', params: {id: moment.store.id}})">{{ moment.store.name }}</h4>
       <div class="content like-pre">{{ moment.content }}</div>
       <div class="attachment-images" v-if="moment.attachment_images.length">
         <wap-img-box>

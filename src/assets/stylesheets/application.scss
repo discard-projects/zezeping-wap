@@ -1,5 +1,5 @@
 @import url("mobile-reset.css");
-@import url("//at.alicdn.com/t/font_586689_gstge8nrrq3q5mi.css");
+@import url("//at.alicdn.com/t/font_586689_9bms6noj1rksxlxr.css");
 @import "../../components/Shared/WapUi/_utils/stylesheets/default";
 /* 浮动开始 */
 .fl, .pull-left{
@@ -20,4 +20,11 @@
 
 .like-pre {
   white-space: pre-wrap;
+}
+
+.iconfont {
+  color: #999;
+  &.active {
+    color: #3a8ee6;
+  }
 }

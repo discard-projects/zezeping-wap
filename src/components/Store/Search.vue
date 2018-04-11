@@ -3,7 +3,7 @@
     <wap-search v-model="currentValue" full-page placeholder="输入要搜索的店铺名称">
       <div is="wap-scroll-section" :infinite-scroll="infiniteScroll" style="height: 100%" ref="scrollSectionRef">
         <wap-list :title="`搜索结果(${paginateMeta.total_count})`">
-          <wap-list-item class="wap-pointer" v-for="store in tableData.data" :key="store.id" @click.native.stop="$router.push({name: 'storeDetail', params: {id: store.id}})">
+          <wap-list-item class="wap-pointer" v-for="store in tableData.data" :key="store.id" @click.native.stop="$router.push({name: 'StoreDetail', params: {id: store.id}})">
             <template slot="left">
               <store-item :store="store"></store-item>
             </template>
