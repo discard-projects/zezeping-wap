@@ -28,6 +28,7 @@
     </wap-list>
     <wap-tabbar>
       <wap-tabbar-item @click.native.stop="$router.push({name: 'Home'})">首页</wap-tabbar-item>
+      <wap-tabbar-item @click.native.stop="$router.push({name: 'Post'})">帖子</wap-tabbar-item>
       <wap-tabbar-item class="active" @click.native.stop="$router.push({name: 'Personal'})">个人中心</wap-tabbar-item>
     </wap-tabbar>
   </div>

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "identicon.js": "^2.3.1",
     "image-compressor.js": "^1.1.1",
     "rotten-encryption2": "^1.0.18",
