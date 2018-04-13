@@ -13,7 +13,7 @@
       <div class="info">
         <span>分类:{{post.category_name}}</span>
       </div>
-      <div class="content" v-html="post.content"></div>
+      <div class="post-content" v-html="post.content"></div>
       <div class="info foot clearfix">
         <i class="iconfont icon-view disabled" style="margin-right: 15px">{{ post.views_count }}</i>
         <i @click="toggleCollection" class="iconfont icon-collection pointer" :class="{'active': post.is_collected}" style="margin-right: 15px">{{ post.collections_count }}</i>
@@ -110,8 +110,9 @@ export default {
         font-size: 13px;
         color: #888;
       }
-      .content {
+      .post-content {
         padding: 10px 0;
+        word-break: break-all;
         img {
           max-width: 100%;
         }
