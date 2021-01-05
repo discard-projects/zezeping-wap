@@ -15,7 +15,7 @@
     "deploy": "npm run build && scp -r /Users/mars/me/zezeping/zezeping-wap/dist/* deploy@47.75.72.202:/mnt/www/zezeping-wap"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "identicon.js": "^2.3.1",
     "image-compressor.js": "^1.1.1",
     "rotten-encryption2": "^1.0.18",
